@@ -1,0 +1,104 @@
+/BATCH
+! Raw data extraction for one solved state (run by collect.ps1 in the solver directory).
+! post_params.inp (written per job) defines NBOD, BMAT(NBOD) = MAT id of each body, NLM, LMX/LMZ(NLM), LMY, TMAX.
+! TMAX = last converged time: a failed solve stores one extra unconverged set (time 1.0, no stresses) that must be skipped.
+! Output (comma separated, one row per stored substep):
+!   sets.txt   : set, time, mean UX of DISP_EDGES, sum RF FX of DISP_EDGES, sum RF FX of FIX_FACE, total SENE
+!   bodies.txt : set, body, SENE, max nodal SEQV, node of that max, its x, its z (undeformed)
+!   lm.txt     : set, landmark, UX, UY, UZ
+!   lm_nodes.txt: landmark, node, x, y, z (undeformed position of the node used)
+/INPUT,post_params,inp
+/POST1
+FILE,'file','rst'
+*GET,NSETS,ACTIVE,0,SET,NSET
+SET,FIRST
+! (the model - nodes, elements, components - is only read from the rst at the first SET)
+
+ALLSEL
+NSEL,S,LOC,Y,LMY-1E-4,LMY+1E-4
+*DIM,LMN,ARRAY,NLM
+*DO,I,1,NLM
+LMN(I)=NODE(LMX(I),LMY,LMZ(I))
+*ENDDO
+ALLSEL
+*CFOPEN,lm_nodes,txt
+*DO,I,1,NLM
+NI=LMN(I)
+XI=NX(NI)
+YI=NY(NI)
+ZI=NZ(NI)
+*VWRITE,I,NI,XI,YI,ZI
+(F6.0,',',F9.0,',',E16.8,',',E16.8,',',E16.8)
+*ENDDO
+*CFCLOS
+
+*DO,K,1,NSETS
+SET,,,,,,,K
+*GET,TT,ACTIVE,0,SET,TIME
+*IF,TT,GT,TMAX,EXIT
+
+ALLSEL
+CMSEL,S,DISP_EDGES
+*GET,NN,NODE,0,COUNT
+ND=0
+FXD=0
+UXD=0
+*DO,J,1,NN
+ND=NDNEXT(ND)
+*GET,RFX,NODE,ND,RF,FX
+FXD=FXD+RFX
+UXD=UXD+UX(ND)
+*ENDDO
+UXD=UXD/NN
+
+ALLSEL
+CMSEL,S,FIX_FACE
+*GET,NN,NODE,0,COUNT
+ND=0
+FXF=0
+*DO,J,1,NN
+ND=NDNEXT(ND)
+*GET,RFX,NODE,ND,RF,FX
+FXF=FXF+RFX
+*ENDDO
+
+ALLSEL
+ETABLE,EN,SENE
+SSUM
+*GET,ETOT,SSUM,,ITEM,EN
+*CFOPEN,sets,txt,,APPEND
+*VWRITE,K,TT,UXD,FXD,FXF,ETOT
+(F6.0,',',F12.8,',',E16.8,',',E16.8,',',E16.8,',',E16.8)
+*CFCLOS
+
+*CFOPEN,bodies,txt,,APPEND
+*DO,B,1,NBOD
+ESEL,S,MAT,,BMAT(B)
+ETABLE,EN,SENE
+SSUM
+*GET,EB,SSUM,,ITEM,EN
+NSLE,S
+NSORT,S,EQV
+*GET,SB,SORT,0,MAX
+*GET,NM,SORT,0,IMAX
+NUSORT
+XM=NX(NM)
+ZM=NZ(NM)
+*VWRITE,K,B,EB,SB,NM,XM,ZM
+(F6.0,',',F3.0,',',E16.8,',',E16.8,',',F9.0,',',E16.8,',',E16.8)
+ALLSEL
+*ENDDO
+*CFCLOS
+
+*CFOPEN,lm,txt,,APPEND
+*DO,I,1,NLM
+NI=LMN(I)
+U1=UX(NI)
+U2=UY(NI)
+U3=UZ(NI)
+*VWRITE,K,I,U1,U2,U3
+(F6.0,',',F6.0,',',E16.8,',',E16.8,',',E16.8)
+*ENDDO
+*CFCLOS
+*ENDDO
+FINISH

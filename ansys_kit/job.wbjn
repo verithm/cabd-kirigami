@@ -1,0 +1,47 @@
+# encoding: utf-8
+# Workbench batch journal for one geometry (one job).
+# Unarchives template.wbpz into JOB_WORK, points SYS 5 (slightly wet) and SYS 6 (fully wet) at the job's
+# STEP file, then runs mech_job.py inside Mechanical for each requested state.
+import time
+import traceback
+from System import Environment
+
+kit = Environment.GetEnvironmentVariable("JOB_KIT")
+work = Environment.GetEnvironmentVariable("JOB_WORK")
+step = Environment.GetEnvironmentVariable("JOB_STEP")
+states = Environment.GetEnvironmentVariable("JOB_STATES").split(",")
+header = open(work + r"\job_header.py").read()
+log_path = work + r"\wb_log.txt"
+SYSTEMS = {"partial": "SYS 5", "full": "SYS 6"}
+
+
+def log(msg):
+    f = open(log_path, "a")
+    f.write(msg + "\n")
+    f.close()
+
+
+log("start states=%s step=%s" % (",".join(states), step))
+try:
+    t0 = time.time()
+    Unarchive(ArchivePath=kit + r"\template.wbpz", ProjectPath=work + r"\job.wbpj", Overwrite=True)
+    log("unarchive_s=%.1f" % (time.time() - t0))
+    template = open(kit + r"\mech_job.py").read()
+    for state in states:
+        system = GetSystem(Name=SYSTEMS[state])
+        t0 = time.time()
+        system.GetContainer(ComponentName="Geometry").SetFile(FilePath=step)
+        system.GetComponent(Name="Model").Refresh()
+        log("%s geometry_s=%.1f" % (state, time.time() - t0))
+        model = system.GetContainer(ComponentName="Model")
+        model.Edit(Interactive=False)
+        cmd = header + "LOG_PATH = r'%s'\nSTATE = '%s'\n" % (log_path, state) + template
+        t1 = time.time()
+        model.SendCommand(Language="Python", Command=cmd)
+        log("%s mechanical_wall_s=%.1f" % (state, time.time() - t1))
+        model.Exit()
+        # Without saving, Workbench deletes the solver directory when the journal ends.
+        Save(Overwrite=True)
+except Exception:
+    log("ERROR\n" + traceback.format_exc())
+log("done")

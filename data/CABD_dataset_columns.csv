@@ -1,0 +1,38 @@
+column,state,type,unit,description
+geom_id,,text,-,"Geometry id. TR = training, TE = test, AD = adaptive (placeholder), IV = inverse validation (placeholder)"
+group,,text,-,"train_base, test, adaptive, inverse_validation"
+sobol_seed,,int,-,Scrambled Sobol seed of the point; blank for placeholders
+t_h,,float,mm,Tip hinge thickness
+L_h,,float,mm,Tip hinge length
+t_a,,float,mm,Apex hinge thickness
+L_a,,float,mm,Apex hinge length
+L,,float,mm,"Arm length, x = 0 to apex outer face"
+t_f,,float,mm,Flange thickness
+c,,float,mm,Gap between apex outer face and back wall inner face
+rho,,float,-,Common fillet ratio
+partial_run_status,partial,text,-,planned = geometry not chosen yet; not_run = waiting; finished = solved; failed = solver did not give a result
+partial_converged,partial,0/1,-,1 = reached 15 mm; 0 = stopped earlier; blank = not finished
+partial_class,partial,text,-,"bi = force goes below zero and returns through zero; mono = never below zero, curve reaches 12 mm or more; neg_end = still below zero at the end of the curve; unknown = never below zero, curve ends before 12 mm"
+partial_F_max_N,partial,float,N,Largest force before u1; largest force of the whole curve if the force never goes below zero
+partial_u1_mm,partial,float,mm,Displacement where the force first crosses zero downward
+partial_F_min_N,partial,float,N,"Lowest force valley, excluding the origin; blank if the curve has no valley"
+partial_u2_mm,partial,float,mm,Second stable point: displacement where the force returns through zero
+partial_dE_f_mJ,partial,float,mJ,"Forward barrier, U(u1) - U(0)"
+partial_dE_r_mJ,partial,float,mJ,"Reverse barrier, U(u1) - U(u2)"
+partial_theta2_deg,partial,float,deg,Rotation of the upper arm A-to-B vector at u2
+partial_u_end_mm,partial,float,mm,Last displacement reached by the curve used
+partial_mesh_rule,partial,text,-,Hinge mesh of the solve that produced the values: in-plane element size and layers along the depth
+partial_nodes,partial,int,count,Mesh nodes of the solve that produced the values
+full_run_status,full,text,-,planned = geometry not chosen yet; not_run = waiting; finished = solved; failed = solver did not give a result
+full_converged,full,0/1,-,1 = reached 15 mm; 0 = stopped earlier; blank = not finished
+full_class,full,text,-,"bi = force goes below zero and returns through zero; mono = never below zero, curve reaches 12 mm or more; neg_end = still below zero at the end of the curve; unknown = never below zero, curve ends before 12 mm"
+full_F_max_N,full,float,N,Largest force before u1; largest force of the whole curve if the force never goes below zero
+full_u1_mm,full,float,mm,Displacement where the force first crosses zero downward
+full_F_min_N,full,float,N,"Lowest force valley, excluding the origin; blank if the curve has no valley"
+full_u2_mm,full,float,mm,Second stable point: displacement where the force returns through zero
+full_dE_f_mJ,full,float,mJ,"Forward barrier, U(u1) - U(0)"
+full_dE_r_mJ,full,float,mJ,"Reverse barrier, U(u1) - U(u2)"
+full_theta2_deg,full,float,deg,Rotation of the upper arm A-to-B vector at u2
+full_u_end_mm,full,float,mm,Last displacement reached by the curve used
+full_mesh_rule,full,text,-,Hinge mesh of the solve that produced the values: in-plane element size and layers along the depth
+full_nodes,full,int,count,Mesh nodes of the solve that produced the values

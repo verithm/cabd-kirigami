@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bistable Particle Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <h1>Bistable particle designer</h1>
+    <p>Kirigami particle with wet hinges · predictions from models trained on 1,536 Ansys simulations</p>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-forward" aria-selected="true" data-mode="forward">Forward</button>
+    <button role="tab" id="tab-inverse" aria-selected="false" data-mode="inverse">Inverse</button>
+  </nav>
+</header>
+
+<main class="layout">
+  <aside class="side">
+    <section id="side-forward">
+      <h2>Dimensions</h2>
+      <p class="hint">Edit a value and the shape updates. The default is a bistable → monostable shape from the training set.</p>
+      <form id="dims" autocomplete="off"></form>
+      <p id="geom-error" class="error" hidden></p>
+      <div class="actions">
+        <button id="compute" class="primary">Compute</button>
+        <button id="reset" class="ghost" type="button">Reset</button>
+      </div>
+    </section>
+
+    <section id="side-inverse" hidden>
+      <h2>Target behaviour</h2>
+      <p class="hint">Fill in the values you need. Leave a field empty to let it float.</p>
+      <form id="targets" autocomplete="off">
+        <label class="field"><span class="name">Second-stable angle θ<sub>2</sub></span>
+          <span class="box"><input name="theta2" type="number" step="0.1" placeholder="e.g. 65"><span class="unit">deg</span></span>
+          <span class="range">training data 47–85</span></label>
+        <label class="field"><span class="name">Second-stable displacement u<sub>2</sub></span>
+          <span class="box"><input name="u2" type="number" step="0.01" placeholder="e.g. 12"><span class="unit">mm</span></span>
+          <span class="range">training data 9–15</span></label>
+        <label class="field"><span class="name">Energy barrier ΔE</span>
+          <span class="box"><input name="dE" type="number" step="0.001" placeholder="e.g. 0.3"><span class="unit">mJ</span></span>
+          <span class="range">training data 0.0001–2.1</span></label>
+      </form>
+      <p class="hint small">Constraint: P(bistable when partially wetted → monostable when fully wetted) ≥ 0.9.
+        A design counts as found when every given target is met within τ = 1.0°, 0.14 mm, ×1.4 in ΔE.</p>
+      <p id="target-error" class="error" hidden></p>
+      <div class="actions">
+        <button id="design" class="primary">Find dimensions</button>
+      </div>
+    </section>
+  </aside>
+
+  <section class="work">
+    <div id="inverse-summary" class="summary" hidden></div>
+
+    <div class="panels">
+      <figure class="panel">
+        <figcaption>Initial shape</figcaption>
+        <svg id="svg-initial" class="drawing" viewBox="-17 -16 29 32" aria-label="Initial shape"></svg>
+      </figure>
+      <figure class="panel">
+        <figcaption>Load to 15 mm, then release <span id="phase" class="phase"></span></figcaption>
+        <svg id="svg-anim" class="drawing" viewBox="-17 -16 29 32" aria-label="Deformation"></svg>
+        <div id="anim-msg" class="panel-msg">Press Compute to run the models.</div>
+      </figure>
+      <figure class="panel">
+        <figcaption>Second stable state (partially wetted)</figcaption>
+        <svg id="svg-stable" class="drawing" viewBox="-17 -16 29 32" aria-label="Second stable state"></svg>
+        <div id="stable-msg" class="panel-msg">Press Compute to run the models.</div>
+      </figure>
+    </div>
+
+    <div id="results" class="results" hidden></div>
+    <p class="foot">Values are model predictions with ±1σ. Shapes in the middle and right panels are a kinematic
+      illustration (rigid arms, bending hinges and flanges) scaled to the predicted angle, not a finite-element result.</p>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cabd"
+version = "0.1.0"
+description = "Forward prediction and inverse design of bistable kirigami particles (MEU3801 CABD)"
+requires-python = ">=3.12"
+dependencies = ["numpy==2.5.4", "pandas==3.1.1", "scipy>=1.15", "joblib==1.6.0"]
+
+[project.optional-dependencies]
+# ML, inverse design, Ansys result scoring, demo app
+ml = ["scikit-learn==1.9.1", "torch==2.15.0", "lightgbm==4.7.0", "matplotlib==3.11.2"]
+# geometry sampling and STEP export (separate environment: cadquery pins its own OCC stack)
+cad = ["cadquery==2.8.0"]
+test = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"cabd.app" = ["static/*"]
+"cabd.ansys.viewer" = ["viewer.html", "README.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["legacy: compares against the original (pre-repo) code; needs the original project folder (CABD_LEGACY)"]

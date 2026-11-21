@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometry Explorer</title>
+<style>
+:root {
+  --ink: #1d1d1f; --secondary: #6e6e73; --tertiary: #8e8e93; --rule: #e5e5ea; --fill: #f5f5f7; --fill-strong: #ebebf0;
+  --accent: #0071e3; --accent-soft: #e8f2fd; --canvas: #fff;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", "Malgun Gothic", sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; font: 14px/1.45 var(--font); color: var(--ink); background: var(--canvas); -webkit-font-smoothing: antialiased; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.app { display: grid; grid-template-columns: 420px minmax(0, 1fr); height: 100vh; }
+.side { display: flex; flex-direction: column; min-height: 0; border-right: 1px solid var(--rule); background: var(--fill); }
+.side-head { padding: 20px 20px 12px; }
+h1 { margin: 0 0 14px; font-size: 22px; line-height: 1.2; font-weight: 600; letter-spacing: -.02em; }
+
+.search-row { display: flex; gap: 8px; }
+.search { flex: 1; min-width: 0; position: relative; }
+.search svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--tertiary); pointer-events: none; }
+.search input { width: 100%; height: 36px; padding: 0 12px 0 33px; background: var(--fill-strong); border: 0; border-radius: 10px; }
+.search input::placeholder { color: var(--tertiary); }
+.filter-toggle { height: 36px; padding: 0 14px; border: 0; border-radius: 10px; background: var(--fill-strong); font-weight: 500; white-space: nowrap; }
+.filter-toggle[aria-expanded="true"], .filter-toggle.active { background: var(--accent-soft); color: var(--accent); }
+
+.filters { padding: 12px 0 0; }
+.filters[hidden] { display: none; }
+.filter { background: var(--canvas); border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; }
+.filter-top { display: flex; align-items: center; gap: 6px; }
+.filter select.col { flex: 1; min-width: 0; height: 28px; border: 0; background: transparent; font-weight: 500; padding: 0; }
+.icon { width: 24px; height: 24px; flex: none; border: 0; border-radius: 50%; background: transparent; color: var(--tertiary); font-size: 17px; line-height: 1; }
+.icon:hover { background: var(--fill); color: var(--ink); }
+.filter-body { margin-top: 8px; }
+.range { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; }
+.range span { color: var(--secondary); font-size: 13px; }
+.range input, .contains { width: 100%; height: 32px; padding: 0 10px; border: 0; border-radius: 8px; background: var(--fill); font-variant-numeric: tabular-nums; }
+.hint { margin-top: 6px; color: var(--tertiary); font-size: 12px; }
+.segmented { display: inline-flex; padding: 2px; border-radius: 9px; background: var(--fill-strong); }
+.segmented button { min-width: 62px; height: 28px; border: 0; border-radius: 7px; background: transparent; font-size: 13px; }
+.segmented button[aria-pressed="true"] { background: var(--canvas); font-weight: 500; box-shadow: 0 1px 2px rgba(0,0,0,.14); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { height: 28px; padding: 0 12px; border: 0; border-radius: 14px; background: var(--fill); font-size: 13px; }
+.chip[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.filter-actions { display: flex; justify-content: space-between; align-items: center; }
+.link { border: 0; background: none; padding: 4px 0; color: var(--accent); font-weight: 500; }
+.link.quiet { color: var(--secondary); font-weight: 400; }
+.scroll-filters { max-height: 46vh; overflow-y: auto; }
+
+.count { display: flex; justify-content: space-between; padding: 12px 20px 8px; color: var(--secondary); font-size: 13px; }
+.list { flex: 1; min-height: 0; overflow-y: auto; padding: 0 8px 12px; }
+.list-grid { display: grid; align-items: center; column-gap: 10px; padding: 0 12px; }
+.list-head { position: sticky; top: 0; z-index: 1; background: var(--fill); height: 28px; }
+.list-head button { padding: 0; border: 0; background: none; color: var(--secondary); font-size: 12px; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.list-head button.num, .cell.num { text-align: right; }
+.row { width: 100%; height: 38px; border: 0; border-radius: 8px; background: transparent; text-align: left; }
+.row:hover { background: var(--fill-strong); }
+.row[aria-current="true"] { background: var(--accent); color: #fff; }
+.row[aria-current="true"] .cell, .row[aria-current="true"] .badge { color: #fff; background: transparent; }
+.cell { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-variant-numeric: tabular-nums; font-size: 13px; }
+.cell.id { font-weight: 500; font-size: 14px; }
+.badge { display: inline-block; color: var(--secondary); }
+.badge.bi { color: var(--accent); font-weight: 500; }
+.empty { padding: 32px 20px; color: var(--secondary); text-align: center; }
+
+.main { overflow-y: auto; min-width: 0; }
+.detail { max-width: 1120px; margin: 0 auto; padding: 28px 40px 56px; }
+.title { display: flex; align-items: baseline; gap: 12px; margin-bottom: 18px; }
+.title h2 { margin: 0; font-size: 34px; line-height: 1.1; font-weight: 600; letter-spacing: -.025em; }
+.title span { color: var(--secondary); font-size: 15px; }
+.notice { margin: 0 0 16px; color: var(--secondary); }
+.figure { display: block; width: 100%; height: auto; }
+.values { display: grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: 56px; margin-top: 32px; }
+h3 { margin: 0 0 8px; font-size: 15px; font-weight: 600; }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th, td { height: 32px; padding: 0 0 0 16px; border-bottom: 1px solid var(--rule); font-weight: 400; text-align: right; white-space: nowrap; }
+th:first-child, td:first-child { padding-left: 0; text-align: left; }
+thead th { color: var(--secondary); font-size: 13px; }
+tbody th { font-weight: 400; }
+tbody th small { color: var(--tertiary); font-size: 12px; margin-left: 4px; }
+td.none { color: var(--tertiary); }
+.message { height: 70vh; display: grid; place-items: center; color: var(--secondary); text-align: center; padding: 24px; }
+.foot { color: var(--tertiary); font-size: 12px; padding: 0 20px 12px; }
+@media (max-width: 1240px) { .values { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
+@media (max-width: 900px) {
+  .app { display: block; height: auto; }
+  .side { border-right: 0; border-bottom: 1px solid var(--rule); }
+  .list { max-height: 44vh; }
+  .main { overflow: visible; }
+  .detail { padding: 22px 16px 40px; }
+  .values { grid-template-columns: 1fr; gap: 28px; }
+}
+@media (prefers-reduced-motion: no-preference) { .chip, .row, .segmented button { transition: background-color .12s; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="side-head">
+      <h1>Geometry Explorer</h1>
+      <div class="search-row">
+        <label class="search">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.6"/><path d="m11 11 3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input id="search" type="search" placeholder="Search geom_id" aria-label="Search geom_id" autocomplete="off" spellcheck="false">
+        </label>
+        <button id="toggle" class="filter-toggle" aria-expanded="false" aria-controls="filters">Filters</button>
+      </div>
+      <div id="filters" class="filters" hidden>
+        <div id="filterList" class="scroll-filters"></div>
+        <div class="filter-actions">
+          <button id="add" class="link">Add filter</button>
+          <button id="clear" class="link quiet" hidden>Clear all</button>
+        </div>
+      </div>
+    </div>
+    <div class="count"><span id="count"></span><span id="updated"></span></div>
+    <div id="list" class="list"></div>
+  </aside>
+  <main class="main"><div id="detail" class="detail"><div class="message">Loading dataset</div></div></main>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = v => v === null || v === undefined ? "" : typeof v === "number" ? (Number.isInteger(v) ? String(v) : Number(v.toPrecision(5)).toString()) : String(v);
+const GROUP = { train_base: "Training", test: "Test", adaptive: "Adaptive", inverse_validation: "Inverse validation" };
+const DESIGN = ["t_h", "L_h", "t_a", "L_a", "L", "t_f", "c", "rho"];
+let columns = [], byName = {}, rows = [], updated = null, filters = [], sort = { col: null, dir: 1 }, shown = [], selected = null, token = 0;
+const at = (r, name) => r[byName[name].index];
+
+function matches(r) {
+  const q = $("search").value.trim().toUpperCase();
+  if (q && !at(r, "geom_id").includes(q)) return false;
+  return filters.every(f => {
+    if (!f.col) return true;
+    const v = at(r, f.col), c = byName[f.col];
+    if (c.kind === "number") {
+      if (f.min === "" && f.max === "") return true;
+      return v !== null && (f.min === "" || v >= +f.min) && (f.max === "" || v < +f.max);
+    }
+    if (c.kind === "bool") return f.value === null || v === f.value;
+    if (c.choices) return f.values.size === 0 || f.values.has(v);
+    return f.text === "" || (v !== null && String(v).toUpperCase().includes(f.text.toUpperCase()));
+  });
+}
+const isActive = f => { if (!f.col) return false; const c = byName[f.col];
+  return c.kind === "number" ? f.min !== "" || f.max !== "" : c.kind === "bool" ? f.value !== null : c.choices ? f.values.size > 0 : f.text !== ""; };
+
+function listColumns() {
+  const extra = filters.filter(f => isActive(f) && !["geom_id", "partial_class", "full_class"].includes(f.col)).map(f => f.col);
+  return ["geom_id", "partial_class", "full_class", ...[...new Set(extra)].slice(0, 2)];
+}
+function shortName(n) { return n === "geom_id" ? "ID" : n.replace("partial_", "P ").replace("full_", "F ").replace("_", " ").replace(/ (mm|deg|N|mJ)$/, ""); }
+
+function renderList() {
+  shown = rows.filter(matches);
+  if (sort.col) shown.sort((a, b) => { const x = at(a, sort.col), y = at(b, sort.col);
+    if (x === null) return y === null ? 0 : 1; if (y === null) return -1;
+    return (x < y ? -1 : x > y ? 1 : 0) * sort.dir; });
+  $("count").textContent = shown.length === rows.length ? `${rows.length} geometries` : `${shown.length} of ${rows.length} geometries`;
+  const cols = listColumns();
+  const tpl = `grid-template-columns: 74px 58px 58px ${cols.slice(3).map(() => "minmax(0,1fr)").join(" ")}`;
+  const head = cols.map(c => { const num = byName[c].kind === "number"; const on = sort.col === c ? (sort.dir > 0 ? " ↑" : " ↓") : "";
+    return `<button class="${num ? "num" : ""}" data-sort="${c}" title="Sort by ${c}">${esc(shortName(c))}${on}</button>`; }).join("");
+  const body = shown.map(r => { const id = at(r, "geom_id");
+    const cells = cols.map(c => { const v = at(r, c); const k = byName[c];
+      if (c === "geom_id") return `<span class="cell id">${esc(v)}</span>`;
+      if (c.endsWith("_class")) return `<span class="cell"><span class="badge ${v === "bi" ? "bi" : ""}">${esc(v ?? "")}</span></span>`;
+      return `<span class="cell ${k.kind === "number" ? "num" : ""}">${esc(fmt(v))}</span>`; }).join("");
+    return `<button class="row list-grid" style="${tpl}" data-id="${esc(id)}" ${id === selected ? 'aria-current="true"' : ""}>${cells}</button>`; }).join("");
+  $("list").innerHTML = shown.length ? `<div class="list-head list-grid" style="${tpl}">${head}</div>${body}`
+    : `<div class="empty">No geometries match these filters. Widen a range or remove a filter.</div>`;
+  const n = filters.filter(isActive).length;
+  $("toggle").textContent = n ? `Filters (${n})` : "Filters";
+  $("toggle").classList.toggle("active", n > 0);
+  $("clear").hidden = filters.length === 0;
+}
+
+function columnOptions(current) {
+  const sections = [...new Set(columns.map(c => c.section))];
+  return `<option value="">Choose a column</option>` + sections.map(s => `<optgroup label="${esc(s)}">` +
+    columns.filter(c => c.section === s).map(c => `<option value="${c.name}" ${c.name === current ? "selected" : ""}>${c.name}</option>`).join("") + `</optgroup>`).join("");
+}
+function range(name) { const v = rows.map(r => at(r, name)).filter(x => x !== null); return v.length ? [Math.min(...v), Math.max(...v)] : null; }
+
+function filterBody(f, i) {
+  if (!f.col) return "";
+  const c = byName[f.col];
+  if (c.kind === "number") { const b = range(f.col);
+    return `<div class="range"><input inputmode="decimal" type="number" step="any" aria-label="Minimum, included" placeholder="From" data-i="${i}" data-k="min" value="${esc(f.min)}"><span>to</span><input inputmode="decimal" type="number" step="any" aria-label="Maximum, not included" placeholder="Up to" data-i="${i}" data-k="max" value="${esc(f.max)}"></div>
+      <div class="hint">From is included, up to is not.${b ? ` Data range ${fmt(b[0])} to ${fmt(b[1])}${c.unit ? " " + esc(c.unit) : ""}.` : ""}</div>`; }
+  if (c.kind === "bool") return `<div class="segmented">${[[null, "Any"], [1, "True"], [0, "False"]].map(([v, l]) => `<button data-i="${i}" data-bool="${v}" aria-pressed="${f.value === v}">${l}</button>`).join("")}</div>`;
+  if (c.choices) return `<div class="chips">${c.choices.map(v => `<button class="chip" data-i="${i}" data-choice="${esc(v)}" aria-pressed="${f.values.has(v)}">${esc(v)}</button>`).join("")}</div>`;
+  return `<input class="contains" data-i="${i}" data-k="text" placeholder="Contains" aria-label="Contains" value="${esc(f.text)}">`;
+}
+function renderFilters() {
+  $("filterList").innerHTML = filters.map((f, i) => `<div class="filter"><div class="filter-top"><select class="col" data-i="${i}" aria-label="Column">${columnOptions(f.col)}</select><button class="icon" data-remove="${i}" aria-label="Remove filter">×</button></div>${f.col ? `<div class="filter-body">${filterBody(f, i)}</div>` : ""}</div>`).join("");
+}
+const newFilter = col => ({ col, min: "", max: "", value: null, values: new Set(), text: "" });
+
+function table(row) {
+  const fields = columns.filter(c => c.name.startsWith("partial_")).map(c => c.name.slice(8));
+  const unit = f => byName["partial_" + f].unit;
+  const label = f => f.replace(/_(N|mm|mJ|deg)$/, "");
+  const cell = v => v === null ? `<td class="none">–</td>` : `<td>${esc(fmt(v))}</td>`;
+  const design = DESIGN.map(v => `<tr><th>${v}${byName[v].unit ? ` <small>${esc(byName[v].unit)}</small>` : ""}</th>${cell(at(row, v))}</tr>`).join("");
+  const res = fields.map(f => `<tr title="${esc(byName["partial_" + f].description)}"><th>${label(f)}${unit(f) && unit(f) !== "count" ? ` <small>${esc(unit(f))}</small>` : ""}</th>${cell(at(row, "partial_" + f))}${cell(at(row, "full_" + f))}</tr>`).join("");
+  return `<div class="values"><div><h3>Design</h3><table><tbody>${design}</tbody></table></div>
+    <div><h3>Results</h3><table><thead><tr><th></th><th>Partially wet</th><th>Fully wet</th></tr></thead><tbody>${res}</tbody></table></div></div>`;
+}
+
+async function show(id) {
+  selected = id; history.replaceState(null, "", "#" + id);
+  document.querySelectorAll(".row").forEach(b => b.dataset.id === id ? b.setAttribute("aria-current", "true") : b.removeAttribute("aria-current"));
+  const row = rows.find(r => at(r, "geom_id") === id), mine = ++token;
+  if (!row) { $("detail").innerHTML = `<div class="message">${esc(id)} is not in the dataset.</div>`; return; }
+  const group = GROUP[at(row, "group")] || at(row, "group");
+  const title = `<div class="title"><h2>${esc(id)}</h2><span>${esc(group)}</span></div>`;
+  $("detail").innerHTML = title + `<div class="message">Drawing ${esc(id)}</div>`;
+  try {
+    const res = await fetch("/api/geometry?id=" + encodeURIComponent(id)); const g = await res.json();
+    if (mine !== token) return;
+    if (g.error) throw new Error(g.error);
+    if (g.placeholder) { $("detail").innerHTML = title + `<p class="notice">This geometry has not been chosen yet. It will appear here once the adaptive or validation step selects it.</p>`; return; }
+    $("detail").innerHTML = title + (g.sealed ? `<p class="notice">Test results are sealed. Start the viewer with --include-test to see them.</p>` : "") +
+      `<img class="figure" alt="Undeformed and deformed shapes of ${esc(id)}" src="${g.shapes}">` +
+      (g.curve ? `<img class="figure" alt="Force and displacement curves of ${esc(id)}" src="${g.curve}">` : "") +
+      (g.energy ? `<img class="figure" alt="Strain energy and displacement curves of ${esc(id)}" src="${g.energy}">` : "") +
+      (g.stress ? `<img class="figure" alt="Maximum stress and displacement curves of ${esc(id)}" src="${g.stress}">` : "") + table(row);
+  } catch (e) { if (mine === token) $("detail").innerHTML = title + `<p class="notice">Could not draw this geometry: ${esc(e.message)}</p>`; }
+}
+
+async function load() {
+  const res = await fetch("/api/rows"); const d = await res.json();
+  if (d.error) throw new Error(d.error);
+  if (d.updated === updated) return;
+  const first = updated === null;
+  updated = d.updated; columns = d.columns; byName = {}; columns.forEach((c, i) => { c.index = i; byName[c.name] = c; }); rows = d.rows;
+  filters = filters.filter(f => !f.col || byName[f.col]);
+  $("updated").textContent = "Updated " + updated;
+  renderFilters(); renderList();
+  if (first) { const id = decodeURIComponent(location.hash.slice(1)) || (rows[0] && at(rows[0], "geom_id")); if (id) show(id); }
+  else if (selected) show(selected);
+}
+
+$("search").addEventListener("input", renderList);
+$("search").addEventListener("keydown", e => { if (e.key === "Enter" && shown[0]) show(at(shown[0], "geom_id")); });
+$("toggle").addEventListener("click", () => { const f = $("filters"); f.hidden = !f.hidden; $("toggle").setAttribute("aria-expanded", String(!f.hidden)); if (!f.hidden && !filters.length) { filters.push(newFilter("")); renderFilters(); renderList(); } });
+$("add").addEventListener("click", () => { filters.push(newFilter("")); renderFilters(); renderList(); });
+$("clear").addEventListener("click", () => { filters = []; renderFilters(); renderList(); });
+$("list").addEventListener("click", e => { const s = e.target.closest("[data-sort]"); if (s) { const c = s.dataset.sort; if (sort.col === c) { if (sort.dir > 0) sort.dir = -1; else sort = { col: null, dir: 1 }; } else sort = { col: c, dir: 1 }; renderList(); return; }
+  const r = e.target.closest(".row"); if (r) show(r.dataset.id); });
+$("filterList").addEventListener("change", e => { if (e.target.matches("select.col")) { filters[+e.target.dataset.i] = newFilter(e.target.value); renderFilters(); renderList(); } });
+$("filterList").addEventListener("input", e => { const k = e.target.dataset.k; if (k) { filters[+e.target.dataset.i][k] = e.target.value; renderList(); } });
+$("filterList").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return;
+  if (b.dataset.remove !== undefined) { filters.splice(+b.dataset.remove, 1); }
+  else if (b.dataset.bool !== undefined) { filters[+b.dataset.i].value = b.dataset.bool === "null" ? null : +b.dataset.bool; }
+  else if (b.dataset.choice !== undefined) { const s = filters[+b.dataset.i].values, v = b.dataset.choice; s.has(v) ? s.delete(v) : s.add(v); }
+  else return;
+  renderFilters(); renderList(); });
+window.addEventListener("hashchange", () => { const id = decodeURIComponent(location.hash.slice(1)).toUpperCase(); if (id && id !== selected) show(id); });
+window.addEventListener("focus", () => load().catch(() => {}));
+setInterval(() => load().catch(() => {}), 60000);
+load().catch(e => { $("detail").innerHTML = `<div class="message">Could not read the dataset: ${esc(e.message)}. Build it with build_dataset_xlsx.py and reload.</div>`; });
+</script>
+</body>
+</html>

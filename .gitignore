@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# GitHub Release assets (big weights, raw Ansys results), see docs/REPRODUCE.md
+artifacts/
+# Regenerable outputs: STEP files, kit folders and kit zips
+build/
+*.wbpj
+*_files/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

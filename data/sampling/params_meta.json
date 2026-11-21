@@ -1,0 +1,73 @@
+{
+  "seeds": {
+    "train": 20261101,
+    "test": 20261102,
+    "candidates": 20261103
+  },
+  "scipy": "1.18.1",
+  "ranges": {
+    "t_h": [
+      0.1,
+      0.4
+    ],
+    "L_h": [
+      2.0,
+      4.0
+    ],
+    "t_a": [
+      0.1,
+      0.4
+    ],
+    "L_a": [
+      2.0,
+      4.0
+    ],
+    "L": [
+      5.0,
+      8.0
+    ],
+    "t_f": [
+      0.8,
+      1.8
+    ],
+    "c": [
+      2.0,
+      4.0
+    ],
+    "rho": [
+      0.3,
+      0.8
+    ]
+  },
+  "geometry_model": "param_geom_v3 (base 25.4 mm fixed, t_w = 3 fixed, alpha derived, rho variable)",
+  "distribution": "uniform for all 8 variables",
+  "filter": "param_geom_v3.check_constraints (incl. 128k nodes, min feature 0.1 mm)",
+  "roles": {
+    "train": {
+      "n": 512,
+      "drawn": 1024,
+      "rejected_by_filter": 0,
+      "1d_balanced": true
+    },
+    "test": {
+      "n": 256,
+      "drawn": 512,
+      "rejected_by_filter": 0,
+      "1d_balanced": true
+    }
+  },
+  "test_to_train_min_dist": {
+    "min": 0.22148314637214744,
+    "median": 0.40154642356232295
+  },
+  "area_mm2": {
+    "min": 127.78811940383672,
+    "max": 180.63378849733272
+  },
+  "est_nodes_max": 94652.10517260234,
+  "alpha_deg": {
+    "min": 32.92754777085394,
+    "max": 59.72528788704281,
+    "frac_35_55": 0.9401041666666666
+  }
+}

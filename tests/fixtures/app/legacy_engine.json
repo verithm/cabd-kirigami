@@ -1,0 +1,351 @@
+{
+ "forward": {
+  "default": {
+   "x": [
+    0.29,
+    3.27,
+    0.38,
+    2.57,
+    6.94,
+    1.29,
+    2.92,
+    0.5
+   ],
+   "res": {
+    "ok": true,
+    "partial": {
+     "bistable": true,
+     "p_bistable": 0.9804172401143205
+    },
+    "full": {
+     "bistable": false,
+     "p_monostable_given_partial_bi": 0.999998270528522,
+     "p_bistable": 1.695603653345778e-06
+    },
+    "p_target_combination": 0.9804155445106671,
+    "combination_ok": true,
+    "theta2": {
+     "mean": 71.0389404487823,
+     "sd": 0.521838168064798
+    },
+    "u2": {
+     "mean": 13.171195645797322,
+     "sd": 0.07271316165805693
+    },
+    "dE": {
+     "mean": 0.4638692121657591,
+     "lo": 0.4559988888112285,
+     "hi": 0.47187537354802334,
+     "log10_mean": -0.3336044514308825,
+     "log10_sd": 0.007431764202357474
+    },
+    "stable_index": 53,
+    "kinematic_scale": 1.0433286348197401,
+    "x_D": -6.5600000000000005,
+    "frames_sha256": "c44ec7e26b919680b95304ceb3d85c8a907426bbd6833eceecd3b6338be10a9f"
+   }
+  },
+  "TE0018": {
+   "x": [
+    0.250001,
+    2.71183,
+    0.387358,
+    3.61334,
+    6.13957,
+    0.885234,
+    2.08951,
+    0.340303
+   ],
+   "res": {
+    "ok": true,
+    "partial": {
+     "bistable": true,
+     "p_bistable": 0.9901375887156973
+    },
+    "full": {
+     "bistable": false,
+     "p_monostable_given_partial_bi": 0.9996277073646525,
+     "p_bistable": 0.0003686209322596342
+    },
+    "p_target_combination": 0.9897689677834377,
+    "combination_ok": true,
+    "theta2": {
+     "mean": 61.52138273440538,
+     "sd": 0.534485743492134
+    },
+    "u2": {
+     "mean": 11.226117500994544,
+     "sd": 0.07022947243782945
+    },
+    "dE": {
+     "mean": 0.19997290724302086,
+     "lo": 0.15829539898936323,
+     "hi": 0.25262366364743755,
+     "log10_mean": -0.6990288394954034,
+     "log10_sd": 0.10150286865279139
+    },
+    "stable_index": 45,
+    "kinematic_scale": 1.0971034437845806,
+    "x_D": -5.752212,
+    "frames_sha256": "3d0918b9106c484b42ffe3b0c358348194f7ef9ff7d94133fa3965340d41f1ce"
+   }
+  },
+  "TE0094": {
+   "x": [
+    0.39272,
+    2.34397,
+    0.242375,
+    3.34051,
+    5.17597,
+    0.88597,
+    3.94284,
+    0.389121
+   ],
+   "res": {
+    "ok": true,
+    "partial": {
+     "bistable": true,
+     "p_bistable": 0.8939834798037509
+    },
+    "full": {
+     "bistable": false,
+     "p_monostable_given_partial_bi": 0.9999948795774571,
+     "p_bistable": 4.577573162930803e-06
+    },
+    "p_target_combination": 0.893978902230588,
+    "combination_ok": true,
+    "theta2": {
+     "mean": 52.1362240275068,
+     "sd": 0.31278060095990706
+    },
+    "u2": {
+     "mean": 9.21260837867978,
+     "sd": 0.09629602126224182
+    },
+    "dE": {
+     "mean": 0.17359996251933277,
+     "lo": 0.13931796840042157,
+     "hi": 0.21631773225471865,
+     "log10_mean": -0.7604503729247845,
+     "log10_sd": 0.09554249432748563
+    },
+    "stable_index": 37,
+    "kinematic_scale": 1.1255666083006566,
+    "x_D": -4.933595,
+    "frames_sha256": "701915129183d647be36fd589519f4d0bdc459a16f6f5f1b50a49a031d149c03"
+   }
+  }
+ },
+ "geometry_default": "7e5882602dbafc0bec65513e1d94c9c645c08dda5f751aaf280f0530d6b9295c",
+ "meta": {
+  "vars": [
+   {
+    "key": "t_h",
+    "label": "Tip hinge thickness",
+    "unit": "mm",
+    "min": 0.1,
+    "max": 0.4,
+    "default": 0.29
+   },
+   {
+    "key": "L_h",
+    "label": "Tip hinge length",
+    "unit": "mm",
+    "min": 2,
+    "max": 4,
+    "default": 3.27
+   },
+   {
+    "key": "t_a",
+    "label": "Apex hinge thickness",
+    "unit": "mm",
+    "min": 0.1,
+    "max": 0.4,
+    "default": 0.38
+   },
+   {
+    "key": "L_a",
+    "label": "Apex hinge length",
+    "unit": "mm",
+    "min": 2,
+    "max": 4,
+    "default": 2.57
+   },
+   {
+    "key": "L",
+    "label": "Arm length",
+    "unit": "mm",
+    "min": 5,
+    "max": 8,
+    "default": 6.94
+   },
+   {
+    "key": "t_f",
+    "label": "Flange thickness",
+    "unit": "mm",
+    "min": 0.8,
+    "max": 1.8,
+    "default": 1.29
+   },
+   {
+    "key": "c",
+    "label": "Apex-to-wall gap",
+    "unit": "mm",
+    "min": 2,
+    "max": 4,
+    "default": 2.92
+   },
+   {
+    "key": "rho",
+    "label": "Fillet ratio",
+    "unit": "-",
+    "min": 0.3,
+    "max": 0.8,
+    "default": 0.5
+   }
+  ],
+  "tau": {
+   "theta2": 1.0049735794420784,
+   "u2": 0.1382365916643131,
+   "log10_dE": 0.14554776403125505
+  },
+  "u_max": 15.0,
+  "models": {
+   "regression": "\u03b8\u2082, u\u2082: MLP deep ensemble (25) \u00b7 \u0394E: ROM + GP",
+   "classification": "GP two-stage classifier",
+   "inverse": "GP surrogate + SLSQP (20 Sobol starts)",
+   "n_train": 1536
+  }
+ },
+ "inverse": {
+  "targets": {
+   "theta2": 65.0,
+   "u2": 12.0,
+   "dE": 0.3
+  },
+  "res": {
+   "ok": true,
+   "time_s": 90.0,
+   "n_start": 20,
+   "n_valid": 20,
+   "targets": {
+    "theta2": 65.0,
+    "u2": 12.0,
+    "dE": 0.3
+   },
+   "achievable": true,
+   "n_acceptable": 20,
+   "max_error_tau": 0.6161177791072893,
+   "p_target_combination": 0.9993076120402539,
+   "x": [
+    0.22710463855839988,
+    2.774390401616442,
+    0.3587641484583767,
+    2.85862929507696,
+    6.390509498414097,
+    1.2437177549645293,
+    3.0194276044085355,
+    0.47435652570869535
+   ],
+   "gp": {
+    "theta2": {
+     "mean": 65.00166244736967,
+     "sd": 0.619179858063645
+    },
+    "u2": {
+     "mean": 11.996578029320963,
+     "sd": 0.07124745560126494
+    },
+    "logE": {
+     "mean": -0.5473801052742432,
+     "sd": 0.044216585724726136
+    }
+   },
+   "tolerance": [
+    {
+     "minus": 0.010854638558399856,
+     "plus": 0.026645361441600166,
+     "ok_at_best": true
+    },
+    {
+     "minus": 0.274390401616442,
+     "plus": 0.17560959838355805,
+     "ok_at_best": true
+    },
+    {
+     "minus": 0.026264148458376595,
+     "plus": 0.018735851541623418,
+     "ok_at_best": true
+    },
+    {
+     "minus": 0.3086292950769599,
+     "plus": 0.3413707049230402,
+     "ok_at_best": true
+    },
+    {
+     "minus": 0.04050949841409712,
+     "plus": 0.034490501585902944,
+     "ok_at_best": true
+    },
+    {
+     "minus": 0.13121775496452914,
+     "plus": 0.14378224503547088,
+     "ok_at_best": true
+    },
+    {
+     "minus": 1.0194276044085355,
+     "plus": 0.9805723955914645,
+     "ok_at_best": true
+    },
+    {
+     "minus": 0.05560652570869533,
+     "plus": 0.10064347429130469,
+     "ok_at_best": true
+    }
+   ],
+   "spread": [
+    0.03605016597902408,
+    0.15235845916955312,
+    0.07025909104911957,
+    0.09571745876578469,
+    0.05739992830799143,
+    0.11250876291809592,
+    0.09747743961617031,
+    0.08026203721854325
+   ],
+   "forward": {
+    "ok": true,
+    "partial": {
+     "bistable": true,
+     "p_bistable": 0.9993566499618964
+    },
+    "full": {
+     "bistable": false,
+     "p_monostable_given_partial_bi": 0.9999509305096126,
+     "p_bistable": 4.903792152889958e-05
+    },
+    "p_target_combination": 0.9993076120403676,
+    "combination_ok": true,
+    "theta2": {
+     "mean": 65.30826341734753,
+     "sd": 0.6435469112628298
+    },
+    "u2": {
+     "mean": 12.01117393445549,
+     "sd": 0.07506088477096458
+    },
+    "dE": {
+     "mean": 0.2542504063550898,
+     "lo": 0.24035570148403967,
+     "hi": 0.26894834918663574,
+     "log10_mean": -0.5947383442945702,
+     "log10_sd": 0.024407227207526114
+    },
+    "stable_index": 49,
+    "kinematic_scale": 1.060581856849499,
+    "x_D": -6.03174534995572,
+    "frames_sha256": "c63fdd616fa6d4786f89ee6d1f0891ffa2d1c4c127f08dca0722c563623dc283"
+   }
+  }
+ }
+}
