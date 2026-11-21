@@ -1,0 +1,4 @@
+# CVAE training: Python 3.11; geometry uses Matplotlib Path
+numpy==1.26.4
+torch==2.2.2
+matplotlib>=3.8,<4

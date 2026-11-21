@@ -126,3 +126,7 @@ STEP 생성, 키트 생성, 데이터셋 재생성, 학습, inverse, 검증 전 
 | [docs/RESULTS.md](docs/RESULTS.md) | 평가 지표 전체(각 표의 근거 파일 경로 포함) |
 | [docs/DATA.md](docs/DATA.md) | 설계 변수, 출력 정의, 데이터셋 열, 수집 규칙 |
 | [docs/REPRODUCE.md](docs/REPRODUCE.md) | 환경, Release asset, 단계별 명령, 테스트 |
+
+## 진우 실험 코드
+
+PC1~PC9 기반의 스칼라 Forward 비교, MLP+XGBoost 평균 앙상블, CVAE 역설계와 형상·응력 필터 실험은 [jinwoo/README.md](jinwoo/README.md)에 별도로 정리했습니다. 이 폴더의 데이터 분할과 평가 기준은 위 본문 실험과 다릅니다.
