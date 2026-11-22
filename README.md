@@ -1,5 +1,10 @@
 # CABD: 쌍안정 kirigami 입자의 forward prediction과 inverse design
 
+> **`integrated` 브랜치의 현재 공통 진입점:** [integrated/README.md](integrated/README.md)
+> 진우·승민의 에너지 정답·완료 결과·지표를 통일해 재학습한 파이프라인입니다. Forward는 승민 MLP 앙상블을 선정했고, **역설계 단일 최종 모델은 미확정**입니다. 실행은 `python integrated/cli.py --help`, 주요 결과와 한계는 [integrated/RESULTS.md](integrated/RESULTS.md)를 확인하세요. 새 데이터·가중치는 로컬 `artifacts/integrated/`에 둡니다.
+>
+> 아래 본문과 `src/cabd/`, `jinwoo/`는 기존 각 버전의 설명·구현입니다. 기존 성적과 통합 실험 성적은 평가 조건이 다릅니다.
+
 연세대 MEU3801(컴퓨터해석기반설계) 기말 프로젝트의 ML 파트입니다.
 물에 젖으면 형태가 바뀌는 쌍안정(bistable) kirigami 입자에서, **단면 치수 8개 → 거동**을 예측하는 forward model과 **원하는 거동 → 치수**를 찾는 inverse design을 만들고 Ansys로 검증했습니다.
 

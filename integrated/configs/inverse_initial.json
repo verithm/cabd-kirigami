@@ -1,0 +1,18 @@
+{
+  "tolerance_basis": "Selected sm_mlp joint model pooled training 5-fold OOF RMSE, rounded upward; not a coverage guarantee",
+  "forward_cv_rmse": {
+    "angle_deg": 1.6765127550234658,
+    "deformation_mm": 0.22268544242185714,
+    "log10_barrier": 0.15437094031620913
+  },
+  "tolerances": {
+    "angle_deg": 1.7,
+    "deformation_mm": 0.23,
+    "log10_barrier": 0.16
+  },
+  "minimum_predicted_bi_mono_probability": 0.9,
+  "require_official_geometry_constraints": true,
+  "stress_filter": false,
+  "success_rule": "All targeted response errors within their tolerances AND predicted bi->mono probability >=0.9 AND official geometry constraints pass",
+  "status": "not_started"
+}

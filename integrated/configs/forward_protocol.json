@@ -1,0 +1,23 @@
+{
+  "targets": [
+    "stability bi>mono",
+    "angle_deg",
+    "deformation_mm",
+    "log10_barrier"
+  ],
+  "classification_selection": "pooled OOF binary F1; precision tiebreak",
+  "regression_selection": "pooled OOF MAE",
+  "joint_mlp_selection": "equal-weight fold-train-sd-normalized MAE",
+  "test_repetitions_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "cv_seed": 42,
+  "configs_per_model_family": 3,
+  "stress": false,
+  "tolerance_success": false,
+  "training_curve_policy": "Only original status ok and 15mm completed runs; ROM fitted to training curves only"
+}
