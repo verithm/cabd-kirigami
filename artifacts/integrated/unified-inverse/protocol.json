@@ -1,0 +1,61 @@
+{
+  "forward_selection": "../unified-forward/forward_selection.json",
+  "tolerance_basis": "Selected sm_mlp joint model pooled training 5-fold OOF RMSE, rounded upward; not a coverage guarantee",
+  "forward_cv_rmse": {
+    "angle_deg": 1.6765127550234658,
+    "deformation_mm": 0.22268544242185714,
+    "log10_barrier": 0.15437094031620913
+  },
+  "tolerances": {
+    "angle_deg": 1.7,
+    "deformation_mm": 0.23,
+    "log10_barrier": 0.16
+  },
+  "minimum_predicted_bi_mono_probability": 0.9,
+  "require_official_geometry_constraints": true,
+  "stress_filter": false,
+  "success_rule": "All targeted response errors within their tolerances AND predicted bi->mono probability >=0.9 AND official geometry constraints pass",
+  "status": "complete",
+  "run_settings": {
+    "methods": [
+      "jw_cvae",
+      "sm_cvae",
+      "conditional_gmm",
+      "differential_evolution",
+      "slsqp"
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "budget_per_goal": 4096,
+    "validation_budget": 512,
+    "forward_seed": 0,
+    "forward_members": 5,
+    "goal_count": 49,
+    "training_shapes": 788,
+    "training_positive": 394,
+    "training_negative": 394,
+    "fit_shapes": 630,
+    "validation_shapes": 158,
+    "validation_goals": 20,
+    "tuning_candidates": 3,
+    "ansys": false,
+    "goal_basis": "All 49 held-out confirmed bi->mono physical response triples; no Test geometry used for fitting or search warm starts",
+    "top_rank_rule": "minimum maximum tolerance-normalized response error among jointly passing candidates"
+  },
+  "forward_sha256": {
+    "joint_s0.joblib": "b726abc940d5a3378231bd0bd808c0f6e5ab4fda79e495580bc84396be2e8c99",
+    "stability_s0.joblib": "7de0bcd82df2fbd448556043f180153bcdc24206e08c3f921842af75d3daf48a"
+  },
+  "ansys_executed": false,
+  "code_sha256": {
+    "shared.py": "2f1b4b16bbf19c17fd039e81bffde8cbeb1e79da3dabba2730435effab0b5b68",
+    "generators.py": "f69bd23d957912e3bae210a8a240fd4947dbed7af17c9fbbf48ff727fcb97688",
+    "audit_results.py": "0c57a5a2ee9616b852ea5d5dcdadd841ffbd25310abea9e2832b40534bb1b80b",
+    "evaluate.py": "a5b67c35c1070f3e22b70e29fe05556e66ef8a7d13e2d527025b90094ce90d01",
+    "run_all.py": "e54473ad56d1bb502f7713ef89eb720f8694dc5b7fdfd137a1dd00bb5e1b067d",
+    "report.py": "d6a1a9ce292a2d656d847a51c6e13cbc052b254f815df2c3e63a1f0e58359a98"
+  }
+}

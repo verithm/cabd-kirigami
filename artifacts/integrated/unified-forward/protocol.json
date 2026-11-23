@@ -1,0 +1,48 @@
+{
+  "targets": [
+    "stability bi>mono",
+    "angle_deg",
+    "deformation_mm",
+    "log10_barrier"
+  ],
+  "classification_selection": "pooled OOF binary F1; precision tiebreak",
+  "regression_selection": "pooled OOF MAE",
+  "joint_mlp_selection": "equal-weight fold-train-sd-normalized MAE",
+  "test_repetitions_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "cv_seed": 42,
+  "configs_per_model_family": 3,
+  "stress": false,
+  "tolerance_success": false,
+  "training_curve_policy": "Only original status ok and 15mm completed runs; ROM fitted to training curves only",
+  "code_sha256": {
+    "run_seungmin.py": "9096b1c97257dcaf33ed56ae506038e5cc067a3611f5d3879cba0020f60ac1a4",
+    "common.py": "daf88a0662fa0aaceee36f6b26dd4dfe4be6f87fdbc1e9abd23d22cc983f7274",
+    "sklearn_models.py": "dbf81a2273f9dc1fdd4fb6cbb82871e24b6a98686003de4215ac7e7e155d4911",
+    "seungmin_models.py": "cdc8ac2099e8f74de0f592f67d312cd466dc81f7d3ab4c8814df19291208d697",
+    "run_sklearn.py": "f439134f61b3c4768422f3caea6d6548f58d0687da78dabc037b009f47dd58a4",
+    "report.py": "8961bf32a289f7817ec8f848933c9535aa1bfc4cb7af192df7be155c24d009fb",
+    "prepare.py": "1153b0ae46c8088822ece1aa798969e6dba2efaaf88e893b945e411d6dede0eb"
+  },
+  "completed_models": 11,
+  "final_code_sha256": {
+    "run_seungmin.py": "9096b1c97257dcaf33ed56ae506038e5cc067a3611f5d3879cba0020f60ac1a4",
+    "predict.py": "ab4fbdebb18aeed4cb8f790a729ed43050595a22676a1764cc29bea4ff7b15ea",
+    "common.py": "daf88a0662fa0aaceee36f6b26dd4dfe4be6f87fdbc1e9abd23d22cc983f7274",
+    "sklearn_models.py": "dbf81a2273f9dc1fdd4fb6cbb82871e24b6a98686003de4215ac7e7e155d4911",
+    "seungmin_models.py": "42c0485acb270852343133becea05526e599aa90110a892b53895f1d1887d871",
+    "precompute_referee_cv.py": "dfdd815e8461200df68715c836aed3c3228498b45a03d1cf0f8cf7d87ed12d71",
+    "run_sklearn.py": "f439134f61b3c4768422f3caea6d6548f58d0687da78dabc037b009f47dd58a4",
+    "plot_results.py": "87cde23d89388ab47687df5160230e4c2e014b3aeaf214593b83461a79000d75",
+    "audit_models.py": "ddea4b8087c0cfc9732cab07ed94efcf4514b235290a74becba0f31de7fe37fa",
+    "report.py": "49ba1f0a0328bf0d41b96c131575baf1ee428d418978d9801f2c9453ca9951ec",
+    "prepare.py": "fdbcb23cbff977491a0206e3a1c4c3524ae6a66f1325f7fe9da4cf8bfaa33eab"
+  },
+  "parallel_regression_cv": "Identical Referee CV tasks precomputed in parallel; selection and final refit unchanged",
+  "post_start_io_hardening": "ROM feature cache includes design dimensions; raw input roots configurable. Saved-model predictions rechecked."
+}

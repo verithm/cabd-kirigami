@@ -1,0 +1,54 @@
+{
+  "basis": "Training cross-validation only; Test descriptive ranks are separate",
+  "seed_policy": "Each seed is evaluated separately; the reported mean is not a new ensemble",
+  "outputs": {
+    "stability": {
+      "model": "sm_mlp",
+      "criterion": "CV F1",
+      "cv_score": 0.9545454545454546,
+      "files": {
+        "0": "models/sm_mlp/stability_s0.joblib",
+        "1": "models/sm_mlp/stability_s1.joblib",
+        "2": "models/sm_mlp/stability_s2.joblib",
+        "3": "models/sm_mlp/stability_s3.joblib",
+        "4": "models/sm_mlp/stability_s4.joblib"
+      }
+    },
+    "angle_deg": {
+      "model": "sm_mlp",
+      "criterion": "CV MAE",
+      "cv_score": 1.282972989191919,
+      "files": {
+        "0": "models/sm_mlp/joint_s0.joblib",
+        "1": "models/sm_mlp/joint_s1.joblib",
+        "2": "models/sm_mlp/joint_s2.joblib",
+        "3": "models/sm_mlp/joint_s3.joblib",
+        "4": "models/sm_mlp/joint_s4.joblib"
+      }
+    },
+    "deformation_mm": {
+      "model": "sm_mlp",
+      "criterion": "CV MAE",
+      "cv_score": 0.16674159942479272,
+      "files": {
+        "0": "models/sm_mlp/joint_s0.joblib",
+        "1": "models/sm_mlp/joint_s1.joblib",
+        "2": "models/sm_mlp/joint_s2.joblib",
+        "3": "models/sm_mlp/joint_s3.joblib",
+        "4": "models/sm_mlp/joint_s4.joblib"
+      }
+    },
+    "log10_barrier": {
+      "model": "sm_mlp",
+      "criterion": "CV MAE",
+      "cv_score": 0.04125176011803469,
+      "files": {
+        "0": "models/sm_mlp/joint_s0.joblib",
+        "1": "models/sm_mlp/joint_s1.joblib",
+        "2": "models/sm_mlp/joint_s2.joblib",
+        "3": "models/sm_mlp/joint_s3.joblib",
+        "4": "models/sm_mlp/joint_s4.joblib"
+      }
+    }
+  }
+}

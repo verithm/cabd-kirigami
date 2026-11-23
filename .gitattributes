@@ -1,3 +1,5 @@
 # Store every file byte for byte (no line-ending conversion): datasets, kit files and fixtures are checked for
 # byte identity against the original project, and Ansys kit scripts need their CRLF endings.
 * -text
+# Preserve published artifact hashes across Windows/macOS checkouts.
+artifacts/integrated/** -text whitespace=cr-at-eol

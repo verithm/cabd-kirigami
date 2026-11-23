@@ -1,0 +1,50 @@
+{
+  "strategies": {
+    "1_observed": "1. 실제 Test 조합",
+    "2_interpolation": "2. 가까운 조합 사이 보간",
+    "4_angle_conditional": "4. 각도별 조건부 샘플링",
+    "5_sparse_boundary": "5. 희소 구간·경계",
+    "6_independent": "6. 독립적인 넓은 조합"
+  },
+  "goal_counts": {
+    "1_observed": 49,
+    "2_interpolation": 100,
+    "4_angle_conditional": 100,
+    "5_sparse_boundary": 100,
+    "6_independent": 100
+  },
+  "target_seed": 20261122,
+  "inverse_seed": 0,
+  "forward_seed": 0,
+  "budget_per_goal": 4096,
+  "tolerances": {
+    "angle_deg": 2.0,
+    "deformation_mm": 0.25,
+    "barrier_mJ": 0.03
+  },
+  "p_min": 0.9,
+  "official_geometry_required": true,
+  "stress_filter": false,
+  "models_retrained": false,
+  "optimizers_rerun": true,
+  "ansys_executed": false,
+  "goal_distribution_basis": "394 Train bi->mono responses only; actual held-out 49 used solely for baseline strategy1",
+  "new_target_exact_matches_forbidden": true,
+  "goals_sha256": {
+    "1_observed": "8c4496e6592fe6768eba590ba078b757952616fc3f42f2455672f94ca014ab4f",
+    "2_interpolation": "ff6edf6b8707280b183314e7de8ddfeafbe1c6512a8bf3f7712c52be5c7f41fc",
+    "4_angle_conditional": "dbc0204e6d0f87065ada4504ff386fdec7105fe5e1e7bbcfa9926fe050352899",
+    "5_sparse_boundary": "b6ef14acd2c4b6208a5fa0612f2775891bf92a80726b21945e6493ce527aad02",
+    "6_independent": "cb969e8223b5c4e4de0d3e7a5bfac7e3cddcb27f21523ab190916da708b56663"
+  },
+  "forward_sha256": {
+    "joint_s0.joblib": "b726abc940d5a3378231bd0bd808c0f6e5ab4fda79e495580bc84396be2e8c99",
+    "stability_s0.joblib": "7de0bcd82df2fbd448556043f180153bcdc24206e08c3f921842af75d3daf48a"
+  },
+  "notes": [
+    "Target novelty is not a physical feasibility guarantee",
+    "Strategy6 barrier sampled uniformly in physical mJ, not log-uniform",
+    "Optimization visited-point pass rates are not reported; representative is best official-valid joint-passing point",
+    "Generative pass counts include all 4096 raw candidates, including invalid proposals"
+  ]
+}

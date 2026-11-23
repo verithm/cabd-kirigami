@@ -1,0 +1,8 @@
+{
+  "train": 788,
+  "test_goals": 49,
+  "train_test_overlap": 0,
+  "train_bi_mono": 394,
+  "train_bi_bi": 394,
+  "data_sha256": "e201aef9bdfdc8ffd1a29e572f3ab0080a4e9556e74063e092170dd9e1b567be"
+}

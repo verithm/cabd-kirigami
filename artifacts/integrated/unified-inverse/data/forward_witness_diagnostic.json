@@ -1,0 +1,8 @@
+{
+  "goals": 49,
+  "official_geometry_valid": 49,
+  "forward_response_all_within": 22,
+  "forward_p_ge_09": 35,
+  "all_criteria": 17,
+  "note": "Existing ANSYS witness dimensions are diagnostic only; never used as search starts or inverse training data"
+}

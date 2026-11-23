@@ -4,7 +4,7 @@
 
 **Forward는 공통 Train CV 기준으로 승민 MLP 앙상블을 선정했습니다. 역설계는 비교 실험을 마쳤지만 단일 최종 모델은 아직 미확정입니다.** `configs/model_status.json`의 `inverse.selected_model`은 `null`입니다. 현재 통합 모델로 새로운 ANSYS 검증을 했다는 의미도 아닙니다.
 
-코드와 실행 설명만 이 브랜치에 추가합니다. 새 원본 ZIP·학습 CSV·가중치·목표 치수·후보·대량 결과는 Git에 포함하지 않습니다. 로컬 실험 기본 위치는 Git에서 제외된 `artifacts/integrated/`입니다.
+코드·실행 설명과 재현에 필요한 일부 작은 CSV·설정을 이 브랜치에 포함합니다. 포함된 파일은 `artifacts/integrated/`에 있으며, 가중치·SLSQP 탐색 기록은 [통합 결과 Release](https://github.com/verithm/cabd-kirigami/releases/tag/integrated-artifacts-2026-11-24)에서 별도로 받습니다. 원본 ANSYS ZIP은 포함하지 않습니다. 그 밖의 로컬 실험 결과는 계속 Git에서 제외합니다. 자세한 설치·범위는 [ARTIFACTS.md](ARTIFACTS.md)를 확인하세요.
 
 ## 무엇을 통합했나
 
