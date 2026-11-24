@@ -21,3 +21,14 @@ Release ZIP: `unified-forward/models/sm_mlp/`, `unified-forward/models/sm_gp/`, 
 - 목표 유형은 실제 Test 49개와 나머지 네 유형 각 100개, 총 449개입니다. 목표 비교 기준은 안정각 ±2°, 변위 ±0.25 mm, 장벽 원래 스케일 ±0.03 mJ, bi→mono 예측 확률 ≥0.9 및 공식 형상 제약입니다. 응력은 제외합니다.
 - 평가는 고정 Forward 기반이며 새 ANSYS 검증 결과가 아닙니다. 역설계 최종 모델 선정은 미확정입니다.
 - 기존 joblib 모델을 불러올 때 통합 CLI 또는 통합 코드와 같은 import 경로를 사용하세요. 모델 클래스는 `integrated/forward/` 및 기존 `src/cabd/`에 있습니다.
+
+## 추가: 진우 CVAE 가중치
+
+Release의 `CABD-integrated-jw-cvae.zip`을 저장소 최상위에 풀면 다음 파일이 배치됩니다.
+
+- `artifacts/integrated/unified-inverse/models/jw_cvae/seed0.pt`, `seed1.pt`, `seed2.pt`, `complete.json`
+- `artifacts/integrated/unified-inverse/tuning/jw_cvae/selection.json`
+
+코드에서 사용하는 정확한 식별자는 `jw_cvae`입니다(`jw_cave`가 아님). `complete.json`과 `selection.json`은 브랜치에도 포함합니다. 가중치는 기존에 학습한 동일 파일이며 재학습하지 않았습니다.
+
+SHA-256은 [추가 manifest](jw-cvae-artifact-manifest.json) 및 Release의 `SHA256SUMS-jw-cvae.txt`에 있습니다. 최초 `artifact-manifest.json`은 원래 배포 묶음의 목록으로 유지합니다. 새 추가 묶음은 별도 manifest로 확인하세요. 선택 기록의 성능은 설정 선택용 검증 결과이며 최종 Test/ANSYS 성능을 의미하지 않습니다.

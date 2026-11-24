@@ -1,0 +1,12 @@
+{
+  "method": "jw_cvae",
+  "config": 1,
+  "cfg": {
+    "beta": 0.005,
+    "epochs": 300
+  },
+  "goal_success_rate": 0.9,
+  "candidate_pass_rate": 0.3748046875,
+  "median_best_error": 0.19280941692466963,
+  "seconds": 36.073385901981965
+}

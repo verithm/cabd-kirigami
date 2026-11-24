@@ -1,0 +1,34 @@
+{
+  "method": "jw_cvae",
+  "requested_name_note": "jw_cave is a spelling error; canonical code identifier is jw_cvae",
+  "zip": "CABD-integrated-jw-cvae.zip",
+  "zip_bytes": 145683,
+  "zip_sha256": "eebb835bde3fdb5a3c4f3855574a6e5ccb0b7d28113e095189bb16c69bc44cd7",
+  "files": [
+    {
+      "path": "artifacts/integrated/unified-inverse/models/jw_cvae/seed0.pt",
+      "bytes": 71299,
+      "sha256": "9542ebdc6d14709f63089f8789d7d7acac3e4cca5a6ca9a979f30942e78f120a"
+    },
+    {
+      "path": "artifacts/integrated/unified-inverse/models/jw_cvae/seed1.pt",
+      "bytes": 71299,
+      "sha256": "4f3b2fec418b69fd10538854727d79e6056bb1563a8c55e78ac2792f2f033354"
+    },
+    {
+      "path": "artifacts/integrated/unified-inverse/models/jw_cvae/seed2.pt",
+      "bytes": 71299,
+      "sha256": "95a62f584d3944d59bb0834b1b6d2200d9012df5df29ba98dd8071e7b125a751"
+    },
+    {
+      "path": "artifacts/integrated/unified-inverse/models/jw_cvae/complete.json",
+      "bytes": 381,
+      "sha256": "3546b2be2986e8e072bb063c0225fd011d4826aafcfc22a461a21bcf5252aea6"
+    },
+    {
+      "path": "artifacts/integrated/unified-inverse/tuning/jw_cvae/selection.json",
+      "bytes": 237,
+      "sha256": "87e8b4365eae38554c73f3477bbda4ad07162e679113602070b4477e5e78a31a"
+    }
+  ]
+}
