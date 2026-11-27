@@ -9,3 +9,6 @@ lightgbm==4.7.0
 matplotlib==3.11.2
 joblib==1.6.0
 threadpoolctl==3.8.0
+
+# Train-only sequential TPE hyperparameter studies
+optuna==4.6.0

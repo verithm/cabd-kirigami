@@ -1,0 +1,304 @@
+{
+  "mlp": {
+    "classification": {
+      "trial": 40,
+      "config": {
+        "classification": {
+          "width": 64,
+          "depth": 4,
+          "lr": 0.009943871079369207,
+          "wd": 0.0,
+          "act": "tanh"
+        }
+      },
+      "objective": 0.9707750952986023
+    },
+    "angle_displacement": {
+      "trial": 13,
+      "config": {
+        "width": 256,
+        "depth": 3,
+        "lr": 0.006733104165327618,
+        "wd": 0.0,
+        "act": "silu"
+      },
+      "objective": 0.1719038477106522
+    },
+    "barrier": {
+      "trial": 43,
+      "config": {
+        "width": 64,
+        "depth": 4,
+        "lr": 0.0016363534147067803,
+        "wd": 0.0,
+        "act": "silu"
+      },
+      "objective": 0.024705791435753813
+    },
+    "stress": {
+      "trial": 45,
+      "config": {
+        "width": 16,
+        "depth": 4,
+        "lr": 0.003388237462323046,
+        "wd": 0.0,
+        "act": "silu"
+      },
+      "objective": 0.16897918561207942
+    }
+  },
+  "xgboost": {
+    "classification": {
+      "trial": 29,
+      "config": {
+        "classification": {
+          "max_depth": 4,
+          "min_child_weight": 4.7503642221831335,
+          "learning_rate": 0.07608893031716805,
+          "n_estimators": 807,
+          "subsample": 0.7245182256091239,
+          "colsample_bytree": 0.7016487377753213,
+          "reg_lambda": 23.103438881422946,
+          "reg_alpha": 0.4662828186650741
+        }
+      },
+      "objective": 0.9203980099502488
+    },
+    "angle_displacement": {
+      "trial": 24,
+      "config": {
+        "max_depth": 6,
+        "min_child_weight": 12.799521142768691,
+        "learning_rate": 0.0329721031894076,
+        "n_estimators": 621,
+        "subsample": 0.6856920941037983,
+        "colsample_bytree": 0.8833370050030127,
+        "reg_lambda": 0.660237790308928,
+        "reg_alpha": 0.0
+      },
+      "objective": 0.2184652468598472
+    },
+    "barrier": {
+      "trial": 42,
+      "config": {
+        "max_depth": 5,
+        "min_child_weight": 3.392234028612546,
+        "learning_rate": 0.017111995956306497,
+        "n_estimators": 1215,
+        "subsample": 0.8606399355551719,
+        "colsample_bytree": 0.9191501246780137,
+        "reg_lambda": 0.9689073689319876,
+        "reg_alpha": 0.0
+      },
+      "objective": 0.1272382874226614
+    },
+    "stress": {
+      "trial": 31,
+      "config": {
+        "max_depth": 6,
+        "min_child_weight": 15.120525219720115,
+        "learning_rate": 0.04717894221405662,
+        "n_estimators": 609,
+        "subsample": 0.667989681830534,
+        "colsample_bytree": 0.9127682327581371,
+        "reg_lambda": 0.19869728916704213,
+        "reg_alpha": 0.0
+      },
+      "objective": 0.34612169836565493
+    }
+  },
+  "gp": {
+    "classification": {
+      "trial": 41,
+      "config": {
+        "classification": {
+          "nu": 2.5,
+          "length_scale": 0.10716239797269507,
+          "signal_level": 1.062863482919299
+        }
+      },
+      "objective": 0.9557522123893806
+    },
+    "angle_displacement": {
+      "trial": 42,
+      "config": {
+        "nu": 2.5,
+        "length_scale": 0.24734302985087836,
+        "signal_level": 1.355801365638992,
+        "noise_level": 3.747376810417002e-05
+      },
+      "objective": 0.17858202248618169
+    },
+    "barrier": {
+      "trial": 31,
+      "config": {
+        "nu": 2.5,
+        "length_scale": 0.4158372494791772,
+        "signal_level": 0.4393483278615859,
+        "noise_level": 0.03869454214211679
+      },
+      "objective": 0.05957355090807004
+    },
+    "stress": {
+      "trial": 8,
+      "config": {
+        "nu": 1.5,
+        "length_scale": 0.1567993391672301,
+        "signal_level": 2.3359635026261603,
+        "noise_level": 0.00015876781526924017
+      },
+      "objective": 0.2253900987940729
+    }
+  },
+  "rom_mlp": {
+    "classification": {
+      "trial": 12,
+      "config": {
+        "classification": {
+          "width": 16,
+          "depth": 4,
+          "lr": 0.009657788437771297,
+          "wd": 3.952081889288133e-06,
+          "act": "tanh"
+        }
+      },
+      "objective": 0.9579617834394905
+    },
+    "angle_displacement": {
+      "trial": 21,
+      "config": {
+        "width": 256,
+        "depth": 2,
+        "lr": 0.0014358565020069574,
+        "wd": 0.00805594324370957,
+        "act": "tanh"
+      },
+      "objective": 0.1759309717383056
+    },
+    "barrier": {
+      "trial": 34,
+      "config": {
+        "width": 32,
+        "depth": 4,
+        "lr": 0.00472426235066355,
+        "wd": 1.8434256043596605e-06,
+        "act": "silu"
+      },
+      "objective": 0.03041539566590798
+    },
+    "stress": {
+      "trial": 33,
+      "config": {
+        "width": 32,
+        "depth": 4,
+        "lr": 0.002216508223728461,
+        "wd": 1.0702982246268575e-05,
+        "act": "tanh"
+      },
+      "objective": 0.18320316148998925
+    }
+  },
+  "rom_xgboost": {
+    "classification": {
+      "trial": 34,
+      "config": {
+        "classification": {
+          "max_depth": 4,
+          "min_child_weight": 1.0045545918649461,
+          "learning_rate": 0.0702759223553226,
+          "n_estimators": 928,
+          "subsample": 0.9590424809290601,
+          "colsample_bytree": 0.8243523805579854,
+          "reg_lambda": 0.002424981654212448,
+          "reg_alpha": 0.0
+        }
+      },
+      "objective": 0.9376558603491272
+    },
+    "angle_displacement": {
+      "trial": 24,
+      "config": {
+        "max_depth": 4,
+        "min_child_weight": 3.47872761654866,
+        "learning_rate": 0.013469303979404221,
+        "n_estimators": 905,
+        "subsample": 0.7719558863386763,
+        "colsample_bytree": 0.9560773148378606,
+        "reg_lambda": 0.016360964292652058,
+        "reg_alpha": 1.0242094742864904e-06
+      },
+      "objective": 0.18921871832181847
+    },
+    "barrier": {
+      "trial": 45,
+      "config": {
+        "max_depth": 5,
+        "min_child_weight": 1.3342938532677302,
+        "learning_rate": 0.03303208362305643,
+        "n_estimators": 1028,
+        "subsample": 0.6206985841229425,
+        "colsample_bytree": 0.9785229508013698,
+        "reg_lambda": 0.10589142581517637,
+        "reg_alpha": 0.0
+      },
+      "objective": 0.08770905808458743
+    },
+    "stress": {
+      "trial": 45,
+      "config": {
+        "max_depth": 6,
+        "min_child_weight": 12.889620436887471,
+        "learning_rate": 0.051712365739264805,
+        "n_estimators": 1392,
+        "subsample": 0.698789841764758,
+        "colsample_bytree": 0.967778191105474,
+        "reg_lambda": 15.959414998632019,
+        "reg_alpha": 0.0
+      },
+      "objective": 0.33765598113057793
+    }
+  },
+  "rom_gp": {
+    "classification": {
+      "trial": 14,
+      "config": {
+        "classification": {
+          "nu": 1.5,
+          "length_scale": 1.5993761546952203,
+          "signal_level": 0.3064377863388475
+        }
+      },
+      "objective": 0.9545454545454546
+    },
+    "angle_displacement": {
+      "trial": 11,
+      "config": {
+        "nu": 1.5,
+        "length_scale": 0.3991440375258351,
+        "signal_level": 3.7033500963464805,
+        "noise_level": 0.00013131498832729996
+      },
+      "objective": 0.1749316039378072
+    },
+    "barrier": {
+      "trial": 30,
+      "config": {
+        "nu": 1.5,
+        "length_scale": 0.10249134326159706,
+        "signal_level": 2.2467222358568613,
+        "noise_level": 0.04257617910163737
+      },
+      "objective": 0.04491263307391717
+    },
+    "stress": {
+      "trial": 20,
+      "config": {
+        "nu": 1.5,
+        "length_scale": 2.006577148598667,
+        "signal_level": 2.317081420646333,
+        "noise_level": 0.003885678798276929
+      },
+      "objective": 0.21808975385378182
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "source": "/Users/user/Documents/ChatGPT/컴해설 프로젝트/output/forward-refinement/search_history_50trials.csv",
+  "source_sha256": "a2e5e553023e7ae2c28742c5ee5c52bc01c5412687b808f693a2bb94b5a5d9fb",
+  "records": 1200,
+  "all_24_histories_have_exactly_50": true,
+  "best_so_far_recomputed": true,
+  "model_fits_performed": 0,
+  "test_data_used": false,
+  "font": "Apple SD Gothic Neo",
+  "outputs": {
+    "tuning50_full.png": "70976d970eb5638218f20ed8684d856952eb1827a6c2c036907c682799e27305",
+    "tuning50_full.pdf": "06d9f44a28314e1dfa4549a72c1b8ffd1169161111b712f05c702d1ede38635b",
+    "tuning50_full.svg": "f2ac1af897bd2d7f30c75d52ff9427b57fa730f8dfbaff8bae64e2fabd02cafc",
+    "tuning50_late_improvement.png": "aba63769ff60a45ab21c1bd7df13391aaa84c635f6a4c947ffde1affef6a7458",
+    "tuning50_late_improvement.pdf": "5ae8c9e98bbe9e1476a23dafc14ea4acc9383ccb7f5c3ebda8caffbd78d75c2c",
+    "tuning50_late_improvement.svg": "472b342ba9c6a72e0f99f8a285d5b6fd22f0386a2e5a2577504b32efd7639fb0"
+  }
+}

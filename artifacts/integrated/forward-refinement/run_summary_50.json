@@ -1,0 +1,148 @@
+{
+  "status": "Completed requested work and stopped at 50 per study",
+  "models": 6,
+  "tasks_per_model": 4,
+  "COMPLETE_trials_per_study": 50,
+  "total_relevant_COMPLETE_trials": 1200,
+  "fold_predictions_audited": 6000,
+  "all_studies_exactly_50": true,
+  "RUNNING_trials": 0,
+  "verified_source_data_hashes": 28,
+  "provisional_CV_best_by_task": {
+    "classification": {
+      "candidate": "mlp",
+      "objective": 0.9707750952986023,
+      "trial": 40,
+      "config": {
+        "classification": {
+          "width": 64,
+          "depth": 4,
+          "lr": 0.009943871079369207,
+          "wd": 0.0,
+          "act": "tanh"
+        }
+      },
+      "status": "provisional CV best; final Train refit/Test not performed"
+    },
+    "angle_displacement": {
+      "candidate": "mlp",
+      "objective": 0.1719038477106522,
+      "trial": 13,
+      "config": {
+        "width": 256,
+        "depth": 3,
+        "lr": 0.006733104165327618,
+        "wd": 0.0,
+        "act": "silu"
+      },
+      "status": "provisional CV best; final Train refit/Test not performed"
+    },
+    "barrier": {
+      "candidate": "mlp",
+      "objective": 0.024705791435753813,
+      "trial": 43,
+      "config": {
+        "width": 64,
+        "depth": 4,
+        "lr": 0.0016363534147067803,
+        "wd": 0.0,
+        "act": "silu"
+      },
+      "status": "provisional CV best; final Train refit/Test not performed"
+    },
+    "stress": {
+      "candidate": "mlp",
+      "objective": 0.16897918561207942,
+      "trial": 45,
+      "config": {
+        "width": 16,
+        "depth": 4,
+        "lr": 0.003388237462323046,
+        "wd": 0.0,
+        "act": "silu"
+      },
+      "status": "provisional CV best; final Train refit/Test not performed"
+    }
+  },
+  "test_scored": false,
+  "refit_full_train": false,
+  "production_forward_inverse_changed": false,
+  "Git_push_performed": false,
+  "convergence_claim": "Stopped at explicit user cap; no claim of full convergence or global optimum.",
+  "completed_at": "2026-11-27T03:10:30.231055+09:00",
+  "database_states": {
+    "mlp|classification": {
+      "COMPLETE": 50
+    },
+    "mlp|angle_displacement": {
+      "COMPLETE": 50
+    },
+    "mlp|barrier": {
+      "COMPLETE": 50
+    },
+    "mlp|stress": {
+      "COMPLETE": 50
+    },
+    "xgboost|classification": {
+      "COMPLETE": 50,
+      "FAIL": 1
+    },
+    "xgboost|angle_displacement": {
+      "COMPLETE": 50
+    },
+    "xgboost|barrier": {
+      "COMPLETE": 50
+    },
+    "xgboost|stress": {
+      "COMPLETE": 50
+    },
+    "gp|classification": {
+      "COMPLETE": 50
+    },
+    "gp|angle_displacement": {
+      "COMPLETE": 50
+    },
+    "gp|barrier": {
+      "COMPLETE": 50
+    },
+    "gp|stress": {
+      "COMPLETE": 50
+    },
+    "rom_mlp|classification": {
+      "COMPLETE": 50
+    },
+    "rom_mlp|angle_displacement": {
+      "COMPLETE": 50
+    },
+    "rom_mlp|barrier": {
+      "COMPLETE": 50
+    },
+    "rom_mlp|stress": {
+      "COMPLETE": 50
+    },
+    "rom_xgboost|classification": {
+      "COMPLETE": 50
+    },
+    "rom_xgboost|angle_displacement": {
+      "COMPLETE": 50
+    },
+    "rom_xgboost|barrier": {
+      "COMPLETE": 50
+    },
+    "rom_xgboost|stress": {
+      "COMPLETE": 50
+    },
+    "rom_gp|classification": {
+      "COMPLETE": 50
+    },
+    "rom_gp|angle_displacement": {
+      "COMPLETE": 50
+    },
+    "rom_gp|barrier": {
+      "COMPLETE": 50
+    },
+    "rom_gp|stress": {
+      "COMPLETE": 50
+    }
+  }
+}

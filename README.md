@@ -1,5 +1,8 @@
 # CABD: 쌍안정 kirigami 입자의 forward prediction과 inverse design
 
+> **`forward_final` 브랜치 — 최종 Forward 전달:** [설치·예측·역설계 연결 방법](integrated/FORWARD_FINAL.md)
+> 네 작업 각각 MLP 5개 시드 앙상블, 총 20개 신경망의 가중치가 이 브랜치에 포함돼 있습니다. 새 모델은 `python integrated/cli.py predict-forward-ensemble ...`로 실행합니다. 아래 `sm_mlp`와 기존 Release 설명은 과거 버전이며 새 가중치 다운로드에 필요하지 않습니다.
+
 > **`integrated` 브랜치의 현재 공통 진입점:** [integrated/README.md](integrated/README.md)
 > 진우·승민의 에너지 정답·완료 결과·지표를 통일해 재학습한 파이프라인입니다. Forward는 승민 MLP 앙상블을 선정했고, **역설계 단일 최종 모델은 미확정**입니다. 실행은 `python integrated/cli.py --help`, 주요 결과와 한계는 [integrated/RESULTS.md](integrated/RESULTS.md)를 확인하세요. 새 데이터·가중치는 로컬 `artifacts/integrated/`에 둡니다.
 >

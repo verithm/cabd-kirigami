@@ -1,0 +1,178 @@
+{
+  "status": "construction baseline specification; HPO results are recorded separately in forward-six/tuning; no new final Test selection",
+  "prediction_averaging": false,
+  "output_directory": "forward-six",
+  "candidates": {
+    "mlp": {
+      "base": "mlp",
+      "rom": false,
+      "provisional_config_not_tuned": {
+        "classification": {
+          "width": 32,
+          "depth": 2,
+          "lr": 0.001,
+          "wd": 0.0001,
+          "act": "silu",
+          "max_epochs": 1200,
+          "patience": 160,
+          "check_every": 20,
+          "validation_fraction": 0.2
+        },
+        "regression": {
+          "width": 32,
+          "depth": 2,
+          "lr": 0.001,
+          "wd": 0.0001,
+          "act": "silu",
+          "max_epochs": 1200,
+          "patience": 160,
+          "check_every": 20,
+          "validation_fraction": 0.2
+        }
+      }
+    },
+    "xgboost": {
+      "base": "xgboost",
+      "rom": false,
+      "provisional_config_not_tuned": {
+        "classification": {
+          "n_estimators": 300,
+          "max_depth": 3,
+          "learning_rate": 0.05,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "min_child_weight": 1.0,
+          "reg_lambda": 1.0,
+          "reg_alpha": 0.0
+        },
+        "regression": {
+          "n_estimators": 300,
+          "max_depth": 3,
+          "learning_rate": 0.05,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "min_child_weight": 1.0,
+          "reg_lambda": 1.0,
+          "reg_alpha": 0.0
+        }
+      }
+    },
+    "gp": {
+      "base": "gp",
+      "rom": false,
+      "provisional_config_not_tuned": {
+        "classification": {
+          "length_scale": 1.0,
+          "nu": 2.5,
+          "noise_level": 0.001,
+          "signal_level": 1.0,
+          "optimize_kernel": true,
+          "max_optimizer_iterations": 60,
+          "restarts": 0
+        },
+        "regression": {
+          "length_scale": 1.0,
+          "nu": 2.5,
+          "noise_level": 0.001,
+          "signal_level": 1.0,
+          "optimize_kernel": true,
+          "max_optimizer_iterations": 60,
+          "restarts": 0
+        }
+      }
+    },
+    "rom_mlp": {
+      "base": "mlp",
+      "rom": true,
+      "provisional_config_not_tuned": {
+        "classification": {
+          "width": 32,
+          "depth": 2,
+          "lr": 0.001,
+          "wd": 0.0001,
+          "act": "silu",
+          "max_epochs": 1200,
+          "patience": 160,
+          "check_every": 20,
+          "validation_fraction": 0.2
+        },
+        "regression": {
+          "width": 32,
+          "depth": 2,
+          "lr": 0.001,
+          "wd": 0.0001,
+          "act": "silu",
+          "max_epochs": 1200,
+          "patience": 160,
+          "check_every": 20,
+          "validation_fraction": 0.2
+        }
+      }
+    },
+    "rom_xgboost": {
+      "base": "xgboost",
+      "rom": true,
+      "provisional_config_not_tuned": {
+        "classification": {
+          "n_estimators": 300,
+          "max_depth": 3,
+          "learning_rate": 0.05,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "min_child_weight": 1.0,
+          "reg_lambda": 1.0,
+          "reg_alpha": 0.0
+        },
+        "regression": {
+          "n_estimators": 300,
+          "max_depth": 3,
+          "learning_rate": 0.05,
+          "subsample": 0.85,
+          "colsample_bytree": 0.9,
+          "min_child_weight": 1.0,
+          "reg_lambda": 1.0,
+          "reg_alpha": 0.0
+        }
+      }
+    },
+    "rom_gp": {
+      "base": "gp",
+      "rom": true,
+      "provisional_config_not_tuned": {
+        "classification": {
+          "length_scale": 1.0,
+          "nu": 2.5,
+          "noise_level": 0.001,
+          "signal_level": 1.0,
+          "optimize_kernel": true,
+          "max_optimizer_iterations": 60,
+          "restarts": 0
+        },
+        "regression": {
+          "length_scale": 1.0,
+          "nu": 2.5,
+          "noise_level": 0.001,
+          "signal_level": 1.0,
+          "optimize_kernel": true,
+          "max_optimizer_iterations": 60,
+          "restarts": 0
+        }
+      }
+    }
+  },
+  "origins": {
+    "mlp": "Seungmin single neural network, joint 3-mean/3-log-variance regression",
+    "gp": "Seungmin ARD Matern 5/2 and two-stage classification",
+    "xgboost": "Jinwoo XGBoost with state-conditioned classification"
+  },
+  "rom_inputs": {
+    "regression": "8 dimensions + partial ROM angle/displacement/log10 barrier = 11",
+    "mlp_classification": "8 dimensions + 3 partial ROM outputs = 11",
+    "gp_classification": "8 dimensions + corresponding-state ROM minimum force = 9",
+    "xgboost_classification": "8 dimensions + corresponding-state ROM minimum force + state code = 10"
+  },
+  "rom_curve_source": "unified-forward/data/completed_force_curves.json",
+  "evaluation": "Existing geometry Train/Test and Train folds; no Test used for calibration or fitting",
+  "stress": false,
+  "tuning_results": "forward-six/tuning/selected_configs_20trials.json (available after all studies finish)"
+}

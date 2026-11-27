@@ -1,0 +1,644 @@
+{
+  "mlp": {
+    "classification": {
+      "positive_bi_to_mono": {
+        "f1": 0.9791666666666666,
+        "precision": 1.0,
+        "recall": 0.9591836734693877,
+        "balanced_accuracy": 0.9795918367346939,
+        "accuracy": 0.9809523809523809,
+        "n": 105,
+        "tp": 47,
+        "fp": 0,
+        "fn": 2,
+        "tn": 56
+      },
+      "three_class_order": [
+        "bi>bi",
+        "bi>mono",
+        "mono>mono"
+      ],
+      "three_class_confusion_matrix": [
+        [
+          48,
+          0,
+          0
+        ],
+        [
+          2,
+          47,
+          0
+        ],
+        [
+          0,
+          0,
+          8
+        ]
+      ],
+      "three_class_metrics": {
+        "bi>bi": {
+          "precision": 0.96,
+          "recall": 1.0,
+          "f1-score": 0.9795918367346939,
+          "support": 48.0
+        },
+        "bi>mono": {
+          "precision": 1.0,
+          "recall": 0.9591836734693877,
+          "f1-score": 0.9791666666666666,
+          "support": 49.0
+        },
+        "mono>mono": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 8.0
+        },
+        "accuracy": 0.9809523809523809,
+        "macro avg": {
+          "precision": 0.9866666666666667,
+          "recall": 0.9863945578231292,
+          "f1-score": 0.9862528344671202,
+          "support": 105.0
+        },
+        "weighted avg": {
+          "precision": 0.9817142857142857,
+          "recall": 0.9809523809523809,
+          "f1-score": 0.9809483317136377,
+          "support": 105.0
+        }
+      }
+    },
+    "angle_displacement": {
+      "angle_deg": {
+        "mae": 1.3134898636041816,
+        "rmse": 1.6592764872345973,
+        "r2": 0.9371705113264261,
+        "n": 143
+      },
+      "deformation_mm": {
+        "mae": 0.17706155970049237,
+        "rmse": 0.22598918768201953,
+        "r2": 0.9694457145950356,
+        "n": 143
+      }
+    },
+    "barrier": {
+      "log10_barrier": {
+        "mae": 0.028556145865044073,
+        "rmse": 0.09966711145495843,
+        "r2": 0.9719076300178295,
+        "n": 143
+      },
+      "barrier_mJ": {
+        "mae": 0.008850788738312782,
+        "rmse": 0.014445042861716464,
+        "r2": 0.9991032236429194,
+        "n": 143
+      }
+    },
+    "stress": {
+      "hinge_transition_max_MPa": {
+        "mae": 0.14774047005121188,
+        "rmse": 0.24044473103329297,
+        "r2": 0.95851783392438,
+        "n": 143
+      }
+    }
+  },
+  "xgboost": {
+    "classification": {
+      "positive_bi_to_mono": {
+        "f1": 0.9292929292929293,
+        "precision": 0.92,
+        "recall": 0.9387755102040817,
+        "balanced_accuracy": 0.9336734693877551,
+        "accuracy": 0.9333333333333333,
+        "n": 105,
+        "tp": 46,
+        "fp": 4,
+        "fn": 3,
+        "tn": 52
+      },
+      "three_class_order": [
+        "bi>bi",
+        "bi>mono",
+        "mono>mono"
+      ],
+      "three_class_confusion_matrix": [
+        [
+          47,
+          1,
+          0
+        ],
+        [
+          2,
+          46,
+          1
+        ],
+        [
+          0,
+          3,
+          5
+        ]
+      ],
+      "three_class_metrics": {
+        "bi>bi": {
+          "precision": 0.9591836734693877,
+          "recall": 0.9791666666666666,
+          "f1-score": 0.9690721649484536,
+          "support": 48.0
+        },
+        "bi>mono": {
+          "precision": 0.92,
+          "recall": 0.9387755102040817,
+          "f1-score": 0.9292929292929293,
+          "support": 49.0
+        },
+        "mono>mono": {
+          "precision": 0.8333333333333334,
+          "recall": 0.625,
+          "f1-score": 0.7142857142857143,
+          "support": 8.0
+        },
+        "accuracy": 0.9333333333333333,
+        "macro avg": {
+          "precision": 0.904172335600907,
+          "recall": 0.8476473922902494,
+          "f1-score": 0.8708836028423658,
+          "support": 105.0
+        },
+        "weighted avg": {
+          "precision": 0.9313093618399741,
+          "recall": 0.9333333333333333,
+          "f1-score": 0.9310962206396668,
+          "support": 105.0
+        }
+      }
+    },
+    "angle_displacement": {
+      "angle_deg": {
+        "mae": 1.7160175496198966,
+        "rmse": 2.2907363725478143,
+        "r2": 0.8802498046717834,
+        "n": 143
+      },
+      "deformation_mm": {
+        "mae": 0.21571962684215198,
+        "rmse": 0.29038176623594475,
+        "r2": 0.9495529826597353,
+        "n": 143
+      }
+    },
+    "barrier": {
+      "log10_barrier": {
+        "mae": 0.13062937562873958,
+        "rmse": 0.24596273819390022,
+        "r2": 0.8289105325661456,
+        "n": 143
+      },
+      "barrier_mJ": {
+        "mae": 0.06579373642887187,
+        "rmse": 0.09762679604887911,
+        "r2": 0.959037679280444,
+        "n": 143
+      }
+    },
+    "stress": {
+      "hinge_transition_max_MPa": {
+        "mae": 0.29426263501825933,
+        "rmse": 0.39869366395329153,
+        "r2": 0.8859462512364475,
+        "n": 143
+      }
+    }
+  },
+  "gp": {
+    "classification": {
+      "positive_bi_to_mono": {
+        "f1": 0.9690721649484536,
+        "precision": 0.9791666666666666,
+        "recall": 0.9591836734693877,
+        "balanced_accuracy": 0.9706632653061225,
+        "accuracy": 0.9714285714285714,
+        "n": 105,
+        "tp": 47,
+        "fp": 1,
+        "fn": 2,
+        "tn": 55
+      },
+      "three_class_order": [
+        "bi>bi",
+        "bi>mono",
+        "mono>mono"
+      ],
+      "three_class_confusion_matrix": [
+        [
+          47,
+          1,
+          0
+        ],
+        [
+          2,
+          47,
+          0
+        ],
+        [
+          0,
+          0,
+          8
+        ]
+      ],
+      "three_class_metrics": {
+        "bi>bi": {
+          "precision": 0.9591836734693877,
+          "recall": 0.9791666666666666,
+          "f1-score": 0.9690721649484536,
+          "support": 48.0
+        },
+        "bi>mono": {
+          "precision": 0.9791666666666666,
+          "recall": 0.9591836734693877,
+          "f1-score": 0.9690721649484536,
+          "support": 49.0
+        },
+        "mono>mono": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 8.0
+        },
+        "accuracy": 0.9714285714285714,
+        "macro avg": {
+          "precision": 0.9794501133786847,
+          "recall": 0.9794501133786847,
+          "f1-score": 0.9793814432989691,
+          "support": 105.0
+        },
+        "weighted avg": {
+          "precision": 0.9716188856494978,
+          "recall": 0.9714285714285714,
+          "f1-score": 0.9714285714285714,
+          "support": 105.0
+        }
+      }
+    },
+    "angle_displacement": {
+      "angle_deg": {
+        "mae": 1.4082140552892337,
+        "rmse": 1.7645844110016258,
+        "r2": 0.9289423429595421,
+        "n": 143
+      },
+      "deformation_mm": {
+        "mae": 0.18678979051731998,
+        "rmse": 0.24004838418763183,
+        "r2": 0.9655257852347983,
+        "n": 143
+      }
+    },
+    "barrier": {
+      "log10_barrier": {
+        "mae": 0.05343004532955929,
+        "rmse": 0.1133937530952385,
+        "r2": 0.9636367329363823,
+        "n": 143
+      },
+      "barrier_mJ": {
+        "mae": 0.024089459153875215,
+        "rmse": 0.0382739988021611,
+        "r2": 0.9937041531058423,
+        "n": 143
+      }
+    },
+    "stress": {
+      "hinge_transition_max_MPa": {
+        "mae": 0.18993202470354814,
+        "rmse": 0.2709572581257613,
+        "r2": 0.9473216122734543,
+        "n": 143
+      }
+    }
+  },
+  "rom_mlp": {
+    "classification": {
+      "positive_bi_to_mono": {
+        "f1": 0.9583333333333334,
+        "precision": 0.9787234042553191,
+        "recall": 0.9387755102040817,
+        "balanced_accuracy": 0.9604591836734694,
+        "accuracy": 0.9619047619047619,
+        "n": 105,
+        "tp": 46,
+        "fp": 1,
+        "fn": 3,
+        "tn": 55
+      },
+      "three_class_order": [
+        "bi>bi",
+        "bi>mono",
+        "mono>mono"
+      ],
+      "three_class_confusion_matrix": [
+        [
+          47,
+          1,
+          0
+        ],
+        [
+          3,
+          46,
+          0
+        ],
+        [
+          0,
+          0,
+          8
+        ]
+      ],
+      "three_class_metrics": {
+        "bi>bi": {
+          "precision": 0.94,
+          "recall": 0.9791666666666666,
+          "f1-score": 0.9591836734693877,
+          "support": 48.0
+        },
+        "bi>mono": {
+          "precision": 0.9787234042553191,
+          "recall": 0.9387755102040817,
+          "f1-score": 0.9583333333333334,
+          "support": 49.0
+        },
+        "mono>mono": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 8.0
+        },
+        "accuracy": 0.9619047619047619,
+        "macro avg": {
+          "precision": 0.9729078014184397,
+          "recall": 0.9726473922902494,
+          "f1-score": 0.9725056689342404,
+          "support": 105.0
+        },
+        "weighted avg": {
+          "precision": 0.9626423505572442,
+          "recall": 0.9619047619047619,
+          "f1-score": 0.9618966634272756,
+          "support": 105.0
+        }
+      }
+    },
+    "angle_displacement": {
+      "angle_deg": {
+        "mae": 1.4578728534474388,
+        "rmse": 1.9430837226867301,
+        "r2": 0.9138393365302752,
+        "n": 143
+      },
+      "deformation_mm": {
+        "mae": 0.1910167183090957,
+        "rmse": 0.26095811492771376,
+        "r2": 0.9592583679816628,
+        "n": 143
+      }
+    },
+    "barrier": {
+      "log10_barrier": {
+        "mae": 0.028523547216945673,
+        "rmse": 0.09364426861586264,
+        "r2": 0.9752002650010325,
+        "n": 143
+      },
+      "barrier_mJ": {
+        "mae": 0.012462287715566922,
+        "rmse": 0.02711195188550148,
+        "r2": 0.9968408659798851,
+        "n": 143
+      }
+    },
+    "stress": {
+      "hinge_transition_max_MPa": {
+        "mae": 0.1636354431993391,
+        "rmse": 0.2512419120234187,
+        "r2": 0.9547086697718804,
+        "n": 143
+      }
+    }
+  },
+  "rom_xgboost": {
+    "classification": {
+      "positive_bi_to_mono": {
+        "f1": 0.9494949494949495,
+        "precision": 0.94,
+        "recall": 0.9591836734693877,
+        "balanced_accuracy": 0.9528061224489796,
+        "accuracy": 0.9523809523809523,
+        "n": 105,
+        "tp": 47,
+        "fp": 3,
+        "fn": 2,
+        "tn": 53
+      },
+      "three_class_order": [
+        "bi>bi",
+        "bi>mono",
+        "mono>mono"
+      ],
+      "three_class_confusion_matrix": [
+        [
+          46,
+          2,
+          0
+        ],
+        [
+          2,
+          47,
+          0
+        ],
+        [
+          0,
+          1,
+          7
+        ]
+      ],
+      "three_class_metrics": {
+        "bi>bi": {
+          "precision": 0.9583333333333334,
+          "recall": 0.9583333333333334,
+          "f1-score": 0.9583333333333334,
+          "support": 48.0
+        },
+        "bi>mono": {
+          "precision": 0.94,
+          "recall": 0.9591836734693877,
+          "f1-score": 0.9494949494949495,
+          "support": 49.0
+        },
+        "mono>mono": {
+          "precision": 1.0,
+          "recall": 0.875,
+          "f1-score": 0.9333333333333333,
+          "support": 8.0
+        },
+        "accuracy": 0.9523809523809523,
+        "macro avg": {
+          "precision": 0.9661111111111111,
+          "recall": 0.9308390022675738,
+          "f1-score": 0.9470538720538721,
+          "support": 105.0
+        },
+        "weighted avg": {
+          "precision": 0.952952380952381,
+          "recall": 0.9523809523809523,
+          "f1-score": 0.9523039923039923,
+          "support": 105.0
+        }
+      }
+    },
+    "angle_displacement": {
+      "angle_deg": {
+        "mae": 1.5004016236568858,
+        "rmse": 2.064291255874486,
+        "r2": 0.9027548494395661,
+        "n": 143
+      },
+      "deformation_mm": {
+        "mae": 0.18341853590190324,
+        "rmse": 0.2625106951953974,
+        "r2": 0.9587721380596558,
+        "n": 143
+      }
+    },
+    "barrier": {
+      "log10_barrier": {
+        "mae": 0.08738490915197479,
+        "rmse": 0.16330371565801657,
+        "r2": 0.9245816947899761,
+        "n": 143
+      },
+      "barrier_mJ": {
+        "mae": 0.047087196217122616,
+        "rmse": 0.0788713842107675,
+        "r2": 0.9732646788127423,
+        "n": 143
+      }
+    },
+    "stress": {
+      "hinge_transition_max_MPa": {
+        "mae": 0.27781761486787593,
+        "rmse": 0.3805140435816954,
+        "r2": 0.8961103516366843,
+        "n": 143
+      }
+    }
+  },
+  "rom_gp": {
+    "classification": {
+      "positive_bi_to_mono": {
+        "f1": 0.968421052631579,
+        "precision": 1.0,
+        "recall": 0.9387755102040817,
+        "balanced_accuracy": 0.9693877551020409,
+        "accuracy": 0.9714285714285714,
+        "n": 105,
+        "tp": 46,
+        "fp": 0,
+        "fn": 3,
+        "tn": 56
+      },
+      "three_class_order": [
+        "bi>bi",
+        "bi>mono",
+        "mono>mono"
+      ],
+      "three_class_confusion_matrix": [
+        [
+          48,
+          0,
+          0
+        ],
+        [
+          3,
+          46,
+          0
+        ],
+        [
+          0,
+          0,
+          8
+        ]
+      ],
+      "three_class_metrics": {
+        "bi>bi": {
+          "precision": 0.9411764705882353,
+          "recall": 1.0,
+          "f1-score": 0.9696969696969697,
+          "support": 48.0
+        },
+        "bi>mono": {
+          "precision": 1.0,
+          "recall": 0.9387755102040817,
+          "f1-score": 0.968421052631579,
+          "support": 49.0
+        },
+        "mono>mono": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 8.0
+        },
+        "accuracy": 0.9714285714285714,
+        "macro avg": {
+          "precision": 0.9803921568627452,
+          "recall": 0.979591836734694,
+          "f1-score": 0.9793726741095162,
+          "support": 105.0
+        },
+        "weighted avg": {
+          "precision": 0.973109243697479,
+          "recall": 0.9714285714285714,
+          "f1-score": 0.971410344041923,
+          "support": 105.0
+        }
+      }
+    },
+    "angle_displacement": {
+      "angle_deg": {
+        "mae": 1.3778410945048156,
+        "rmse": 1.8011507401460007,
+        "r2": 0.9259668669455112,
+        "n": 143
+      },
+      "deformation_mm": {
+        "mae": 0.18301564146963248,
+        "rmse": 0.24391198262333202,
+        "r2": 0.9644071240026123,
+        "n": 143
+      }
+    },
+    "barrier": {
+      "log10_barrier": {
+        "mae": 0.04680123331524374,
+        "rmse": 0.11639157798097567,
+        "r2": 0.9616886241843466,
+        "n": 143
+      },
+      "barrier_mJ": {
+        "mae": 0.025523156660631,
+        "rmse": 0.09985089933208434,
+        "r2": 0.9571500379332541,
+        "n": 143
+      }
+    },
+    "stress": {
+      "hinge_transition_max_MPa": {
+        "mae": 0.1937564062888193,
+        "rmse": 0.264810571432035,
+        "r2": 0.9496845300319554,
+        "n": 143
+      }
+    }
+  }
+}

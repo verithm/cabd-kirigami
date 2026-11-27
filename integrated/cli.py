@@ -20,6 +20,50 @@ def main(argv=None):
     sub.add_parser('forward-data', help='Build common geometry rows and fixed Train folds')
     p = sub.add_parser('train-forward', help='Compare and refit Forward families (potentially long-running)')
     p.add_argument('--group', choices=['all', 'jinwoo', 'seungmin'], default='all')
+    p = sub.add_parser('forward-six', help='Six single-model candidates; no automatic hyperparameter search')
+    p.add_argument('action', choices=['describe', 'smoke', 'train', 'cv', 'predict'])
+    p.add_argument('--models', nargs='+', choices=['mlp','xgboost','gp','rom_mlp','rom_xgboost','rom_gp'],
+                   default=['mlp','xgboost','gp','rom_mlp','rom_xgboost','rom_gp'])
+    p.add_argument('--config', type=Path)
+    p.add_argument('--seed', type=int, default=0)
+    p.add_argument('--output', type=Path)
+    p.add_argument('--checkpoint', type=Path)
+    p.add_argument('--input', type=Path)
+    p = sub.add_parser('tune-forward-six', help='Resume equal-budget Train-only TPE studies')
+    p.add_argument('--total-trials', type=int, default=20)
+    p.add_argument('--workers', type=int, default=3)
+    p.add_argument('--models', nargs='+', choices=['mlp','xgboost','gp','rom_mlp','rom_xgboost','rom_gp'],
+                   default=['mlp','xgboost','gp','rom_mlp','rom_xgboost','rom_gp'])
+    p.add_argument('--tasks', nargs='+', choices=['classification','regression'], default=['classification','regression'])
+    p.add_argument('--prepare-only', action='store_true')
+    p.add_argument('--report-only', action='store_true')
+    p = sub.add_parser('forward-grouped', help='Four independent tasks: classification, angle/displacement, barrier, stress')
+    p.add_argument('action', choices=['prepare', 'smoke'])
+    p.add_argument('--stress', type=Path)
+    p = sub.add_parser('tune-forward-grouped', help='Equal-budget TPE for angle/displacement, barrier and stress')
+    p.add_argument('--total-trials', type=int, default=20)
+    p.add_argument('--workers', type=int, default=6)
+    p.add_argument('--prepare-only', action='store_true')
+    p = sub.add_parser('tune-forward-independent', help='Independent angle and displacement TPE against frozen joint results')
+    p.add_argument('--total-trials', type=int, default=20)
+    p.add_argument('--workers', type=int, default=6)
+    p.add_argument('--prepare-only', action='store_true')
+    p = sub.add_parser('continue-forward-independent', help='Continue selected independent candidates after initial comparison')
+    p.add_argument('--models', nargs='+', choices=['mlp','xgboost','gp','rom_mlp','rom_xgboost','rom_gp'], required=True)
+    p.add_argument('--tasks', nargs='+', choices=['angle','displacement'], required=True)
+    p.add_argument('--total-trials', type=int, required=True)
+    p.add_argument('--workers', type=int, default=2)
+    p = sub.add_parser('continue-forward-grouped', help='Continue selected joint/barrier/stress candidates after comparison')
+    p.add_argument('--models', nargs='+', choices=['mlp','xgboost','gp','rom_mlp','rom_xgboost','rom_gp'], required=True)
+    p.add_argument('--tasks', nargs='+', choices=['angle_displacement','barrier','stress'], required=True)
+    p.add_argument('--total-trials', type=int, required=True)
+    p.add_argument('--workers', type=int, default=2)
+    p = sub.add_parser('train-forward-ensemble', help='Refit selected MLP as four five-seed ensembles')
+    p.add_argument('--workers', type=int, default=4)
+    p = sub.add_parser('predict-forward-ensemble', help='Predict all outputs with the final MLP ensemble')
+    p.add_argument('input', type=Path)
+    p.add_argument('output', type=Path)
+    p.add_argument('--model-dir', type=Path)
     sub.add_parser('report-forward', help='Aggregate Test metrics, CV selection and charts')
     p = sub.add_parser('predict', help='Predict geometry CSV with saved Forward weights')
     p.add_argument('input', type=Path)
@@ -64,6 +108,50 @@ def main(argv=None):
             execute('forward', 'run_sklearn.py')
         if args.group in ['all', 'seungmin']:
             execute('forward', 'run_seungmin.py')
+    elif args.command == 'forward-six':
+        opts = [args.action, '--models', *args.models, '--seed', args.seed]
+        for name in ['config', 'output', 'checkpoint', 'input']:
+            value = getattr(args, name)
+            if value is not None:
+                opts += ['--' + name, value]
+        execute('forward_six', 'run.py', *opts)
+    elif args.command == 'tune-forward-six':
+        opts = ['--total-trials', args.total_trials, '--workers', args.workers,
+                '--models', *args.models, '--tasks', *args.tasks]
+        if args.prepare_only:
+            opts += ['--prepare-only']
+        if args.report_only:
+            opts += ['--report-only']
+        execute('forward_six', 'tune.py', *opts)
+    elif args.command == 'forward-grouped':
+        opts = [args.action]
+        if args.stress is not None:
+            opts += ['--stress', args.stress]
+        execute('forward_six', 'grouped_run.py', *opts)
+    elif args.command == 'tune-forward-grouped':
+        opts = ['--total-trials', args.total_trials, '--workers', args.workers]
+        if args.prepare_only:
+            opts += ['--prepare-only']
+        execute('forward_six', 'grouped_tune.py', *opts)
+    elif args.command == 'tune-forward-independent':
+        opts = ['--total-trials', args.total_trials, '--workers', args.workers]
+        if args.prepare_only:
+            opts += ['--prepare-only']
+        execute('forward_six', 'single_tune.py', *opts)
+    elif args.command == 'continue-forward-independent':
+        execute('forward_six', 'single_continue.py', '--models', *args.models, '--tasks', *args.tasks,
+                '--total-trials', args.total_trials, '--workers', args.workers)
+    elif args.command == 'continue-forward-grouped':
+        execute('forward_six', 'grouped_continue.py', '--models', *args.models, '--tasks', *args.tasks,
+                '--total-trials', args.total_trials, '--workers', args.workers)
+    elif args.command == 'train-forward-ensemble':
+        require(runs / 'forward-final50/protocol.json', runs / 'forward-grouped/data/geometry_targets.csv')
+        execute('forward_six', 'train_ensemble.py', '--workers', args.workers)
+    elif args.command == 'predict-forward-ensemble':
+        opts = [args.input, args.output]
+        if args.model_dir:
+            opts += ['--model-dir', args.model_dir]
+        execute('forward_six', 'ensemble.py', *opts)
     elif args.command == 'report-forward':
         families=['jw_mlp','jw_xgboost','jw_gp','jw_extra_trees','jw_svm','jw_mlp_xgboost','sm_mlp','sm_gp','sm_rom_gp','sm_referee','sm_referee_nogp']
         require(*[runs/'unified-forward/models'/name/'complete.json' for name in families])

@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "reason": "Separate kernel-only and moderate/lower signal-cap effects from expanded-bound pilots",
+  "controls": {
+    "gp": {
+      "rbf_original_bounds": {
+        "kernel": "rbf",
+        "ard": true,
+        "signal_upper": 1000.0,
+        "length_upper": 1000.0,
+        "length_initial": 0.10716239797269507,
+        "signal_initial": 1.062863482919299,
+        "max_optimizer_iterations": 60
+      },
+      "matern05_original_bounds": {
+        "kernel": "matern05",
+        "ard": true,
+        "signal_upper": 1000.0,
+        "length_upper": 1000.0,
+        "length_initial": 0.10716239797269507,
+        "signal_initial": 1.062863482919299,
+        "max_optimizer_iterations": 60
+      },
+      "signal_cap100": {
+        "kernel": "matern25",
+        "ard": true,
+        "signal_upper": 100.0,
+        "length_upper": 1000.0,
+        "length_initial": 0.10716239797269507,
+        "signal_initial": 1.062863482919299,
+        "max_optimizer_iterations": 60
+      },
+      "signal_cap10000": {
+        "kernel": "matern25",
+        "ard": true,
+        "signal_upper": 10000.0,
+        "length_upper": 1000.0,
+        "length_initial": 0.10716239797269507,
+        "signal_initial": 1.062863482919299,
+        "max_optimizer_iterations": 60
+      }
+    },
+    "rom_gp": {
+      "rbf_original_bounds": {
+        "kernel": "rbf",
+        "ard": true,
+        "signal_upper": 1000.0,
+        "length_upper": 1000.0,
+        "length_initial": 1.5993761546952203,
+        "signal_initial": 0.3064377863388475,
+        "max_optimizer_iterations": 60
+      },
+      "matern05_original_bounds": {
+        "kernel": "matern05",
+        "ard": true,
+        "signal_upper": 1000.0,
+        "length_upper": 1000.0,
+        "length_initial": 1.5993761546952203,
+        "signal_initial": 0.3064377863388475,
+        "max_optimizer_iterations": 60
+      },
+      "signal_cap100": {
+        "kernel": "matern15",
+        "ard": true,
+        "signal_upper": 100.0,
+        "length_upper": 1000.0,
+        "length_initial": 1.5993761546952203,
+        "signal_initial": 0.3064377863388475,
+        "max_optimizer_iterations": 60
+      },
+      "signal_cap10000": {
+        "kernel": "matern15",
+        "ard": true,
+        "signal_upper": 10000.0,
+        "length_upper": 1000.0,
+        "length_initial": 1.5993761546952203,
+        "signal_initial": 0.3064377863388475,
+        "max_optimizer_iterations": 60
+      }
+    }
+  },
+  "predeclared_trigger": "same as initial pilot: gain>=.002 and improved folds>=3 OR gain>=.005",
+  "triggering_rule_reused_without_test": true,
+  "test_scored": false,
+  "new50_space": {
+    "kernel": [
+      "matern05",
+      "matern15",
+      "matern25",
+      "rbf"
+    ],
+    "ard": [
+      true,
+      false
+    ],
+    "signal_upper": [
+      10.0,
+      100.0,
+      1000.0,
+      10000.0,
+      1000000.0
+    ],
+    "length_upper": [
+      1000.0,
+      100000.0
+    ],
+    "signal_initial_log": [
+      0.01,
+      10.0
+    ],
+    "length_initial_log": [
+      0.05,
+      50.0
+    ],
+    "max_optimizer_iterations": 150,
+    "restarts": 0,
+    "max_iter_predict": 60
+  },
+  "source_sha256": {
+    "/Users/user/Documents/ChatGPT/\ucef4\ud574\uc124 \ud504\ub85c\uc81d\ud2b8/cabd-kirigami/integrated/forward_six/gp_controls.py": "b35cf236741dfa6bfef556fe932226c392ffb1e421926e3de7db0097f9bf9d5d",
+    "/Users/user/Documents/ChatGPT/\ucef4\ud574\uc124 \ud504\ub85c\uc81d\ud2b8/cabd-kirigami/integrated/forward_six/gp_improvement.py": "58a0c1c1c3fb5e542ca5af0d3ff7db4d7c26210ad2f0dbdfb72a2b6abecc0f92"
+  },
+  "original_protocol_sha256": "4033d74c226dbbcdfd4aadcec097fc6caedfe87187748e0bc3b2a9e63dee101d",
+  "prior_pilot_summary_sha256": "f4d6c02723c666983f5b15e8461c5a56798f799ef272e644178bf13abe8ae700",
+  "disclosure": "Eight pre-search pilots plus original 50 trial history per family; new 50 is not equal total historical tuning opportunity."
+}

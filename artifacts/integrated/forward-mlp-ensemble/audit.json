@@ -1,0 +1,15 @@
+{
+  "time": "2026-11-27T20:38:37.644044+09:00",
+  "networks_audited": 20,
+  "unique_weight_hashes_per_task": 5,
+  "all_20_full_train_members_and_Train_ids_verified": true,
+  "train_test_disjoint": true,
+  "source_data_hashes_verified": true,
+  "ensemble_aggregation_independently_recomputed": true,
+  "all_test_metrics_recomputed": true,
+  "seed42_baseline_replication_verified": true,
+  "public_inference_all_Test_rows_verified": true,
+  "old_single_model_artifacts_unchanged": true,
+  "all_original_studies_still_exactly_50": true,
+  "test_used_for_size_weights_or_seed_selection": false
+}

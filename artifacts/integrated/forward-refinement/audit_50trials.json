@@ -1,0 +1,11 @@
+{
+  "trials_per_study": 50,
+  "studies": 24,
+  "fold_predictions_checked": 6000,
+  "all_objectives_and_metrics_recomputed": true,
+  "data_and_fold_truth_checked": true,
+  "test_scored": false,
+  "selected_gp_inner_calls": 50,
+  "selected_gp_inner_not_converged": 12,
+  "selected_mlp_fold_epoch_caps": 4
+}

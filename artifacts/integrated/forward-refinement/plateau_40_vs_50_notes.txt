@@ -1,0 +1,18 @@
+40 vs 50 trial retrospective check — no model training or Test evaluation
+
+Files: plateau_40_vs_50.csv (24 studies), plateau_40_vs_50_folds.csv (120 paired fold comparisons).
+Classification selection objective is pooled OOF F1, not the arithmetic mean of fold F1.
+Joint angle/displacement selection objective is the mean of fold MAEs normalized by each fold training response SD, averaged over the two responses.
+Barrier and stress objectives are unweighted mean fold MAEs; these differ slightly from pooled OOF MAEs.
+Fold score standard deviations use ddof=1. Positive paired improvements always mean better performance.
+
+16 of 24 studies retained exactly the same selected trial at 40 and 50.
+All 24 objective improvements are smaller than the respective 40-trial winner's fold SD. This is descriptive and is NOT a statistical test, proof of stagnation, or forecast of future optimization potential. Fold validation sets differ in difficulty and fold training sets overlap. Winner selection uses the same CV folds, so paired comparisons are retrospective and selection-biased; no independent significance claim is made.
+
+MLP classification: pooled F1 improvement +0.001154842 (+0.1155 percentage points); 2 folds improve, 2 worsen, 1 unchanged.
+MLP angle/displacement: no change; winner remains trial 13.
+MLP log10 barrier: mean fold MAE 0.02637563090 -> 0.02470579144, relative reduction 6.331%; 3 folds improve, 2 worsen. Most improvement is contributed by fold 0.
+MLP stress: mean fold MAE 0.18260312061 -> 0.16897918561 MPa, relative reduction 7.461%; 1 fold improves, 4 worsen. Fold 2 improves by 0.15064 MPa and dominates the aggregate gain; fold-score SD nevertheless decreases from 0.06097 to 0.02417 MPa.
+
+Decision: stopping at 50 is reasonable for an equal-budget model comparison with diminishing marginal returns across most tasks. It is not justified to claim every study has fully converged or future gains must be negligible. Barrier and stress MLP searches retain uncertainty about additional gains. No automatic further tuning initiated.
+Model-family ranking at 40 and 50: MLP remains best for all four primary task objectives. This does not prove ranking stability beyond 50 or independent Test superiority.

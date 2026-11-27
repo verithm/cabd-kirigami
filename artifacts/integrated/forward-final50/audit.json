@@ -1,0 +1,96 @@
+{
+  "finished_at": "2026-11-27T09:14:56.631631+09:00",
+  "models_tasks_audited": 24,
+  "saved_predictions_and_metrics_recomputed": true,
+  "train_test_disjoint": true,
+  "frozen_source_and_data_hashes_verified": true,
+  "all_studies_still_exactly_50": true,
+  "eligible_train_and_test_ids_verified": true,
+  "all_checkpoint_reload_predictions_verified": true,
+  "rom_train_only_calibration_verified": true,
+  "gp_inner_optimizer_calls": 10,
+  "gp_inner_calls_not_successful": 2,
+  "gp_optimization_records": [
+    {
+      "candidate": "gp",
+      "task": "classification",
+      "success": true,
+      "nit": 26,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "objective": 36.625473357224465
+    },
+    {
+      "candidate": "gp",
+      "task": "classification",
+      "success": true,
+      "nit": 28,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "objective": 109.36249975587963
+    },
+    {
+      "candidate": "gp",
+      "task": "angle_displacement",
+      "success": true,
+      "nit": 50,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "objective": 78.68793583643253
+    },
+    {
+      "candidate": "gp",
+      "task": "barrier",
+      "success": true,
+      "nit": 40,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "objective": -42.43847914346054
+    },
+    {
+      "candidate": "gp",
+      "task": "stress",
+      "success": true,
+      "nit": 39,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "objective": 271.12056013336985
+    },
+    {
+      "candidate": "rom_gp",
+      "task": "classification",
+      "success": true,
+      "nit": 23,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "objective": 33.294967885333726
+    },
+    {
+      "candidate": "rom_gp",
+      "task": "classification",
+      "success": true,
+      "nit": 18,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "objective": 101.69181530274528
+    },
+    {
+      "candidate": "rom_gp",
+      "task": "angle_displacement",
+      "success": false,
+      "nit": 60,
+      "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+      "objective": 8.422028839046675
+    },
+    {
+      "candidate": "rom_gp",
+      "task": "barrier",
+      "success": true,
+      "nit": 52,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "objective": -412.7121111149055
+    },
+    {
+      "candidate": "rom_gp",
+      "task": "stress",
+      "success": false,
+      "nit": 60,
+      "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+      "objective": 251.1428256772739
+    }
+  ],
+  "no_additional_tuning": true
+}

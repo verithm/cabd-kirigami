@@ -1,10 +1,24 @@
 # 진우·승민 통합 파이프라인
 
+## 최신: `forward_final` 최종 Forward 전달
+
+**현재 최종 모델은 MLP 5개 시드 앙상블입니다.** 분류 / 각도·변위 공동 회귀 / log10 장벽 / 힌지 응력의 네 작업에 각각 5개 네트워크를 사용합니다. 가중치와 예제·평가표를 브랜치에 포함했습니다. [FORWARD_FINAL.md](FORWARD_FINAL.md)의 새 예측 명령과 API를 사용하세요. 과거 `sm_mlp` 어댑터는 새 모델로 자동 교체되지 않았습니다.
+
+여섯 후보는 공통 Train 5-fold와 작업별 **50회** 튜닝으로 비교했고, 선정 후 전체 Train 재학습·Test 평가를 완료했습니다. 그 다음 고정한 5개 시드 앙상블을 만들었습니다. 응력 출력도 포함됩니다. Test로 앙상블 멤버나 가중치를 선택하지 않았으며, 단일 MLP 대비 모든 지표가 개선된 것은 아닙니다.
+
+아래에는 앞선 통합 실험과 후보 구축 시점의 설명도 보존돼 있습니다. 모델 상태·예측 진입점·최종 지표는 위 최신 전달 문서를 우선합니다.
+
+---
+
 이 폴더가 `integrated` 브랜치의 공통 실험 진입점입니다. 기존 `src/cabd/`와 `jinwoo/`는 원본 모델 구조와 과거 실험으로 보존합니다.
 
 **Forward는 공통 Train CV 기준으로 승민 MLP 앙상블을 선정했습니다. 역설계는 비교 실험을 마쳤지만 단일 최종 모델은 아직 미확정입니다.** `configs/model_status.json`의 `inverse.selected_model`은 `null`입니다. 현재 통합 모델로 새로운 ANSYS 검증을 했다는 의미도 아닙니다.
 
 코드·실행 설명과 재현에 필요한 일부 작은 CSV·설정을 이 브랜치에 포함합니다. 포함된 파일은 `artifacts/integrated/`에 있으며, 가중치·SLSQP 탐색 기록은 [통합 결과 Release](https://github.com/verithm/cabd-kirigami/releases/tag/integrated-artifacts-2026-11-24)에서 별도로 받습니다. 원본 ANSYS ZIP은 포함하지 않습니다. 그 밖의 로컬 실험 결과는 계속 Git에서 제외합니다. 자세한 설치·범위는 [ARTIFACTS.md](ARTIFACTS.md)를 확인하세요.
+
+## 새 Forward 후보 6종 구축
+
+MLP·GP는 승민 구조, XGBoost는 진우 구조를 바탕으로 `MLP / XGBoost / GP / ROM+MLP / ROM+XGBoost / ROM+GP`를 별도 구현했습니다. **여러 학습 모델의 예측값을 평균하는 앙상블은 사용하지 않습니다.** 기존 앙상블 가중치와 평가 결과는 과거 실험으로 보존합니다. 새 후보의 상세 구조·API·잠정 설정은 [forward_six/README.md](forward_six/README.md)에 있습니다. 구축 검증 후 후보별 분류·회귀 TPE 탐색을 20회씩 완료했으며, 사용자 요청에 따라 공식 비교는 모든 후보의 20회 완료 기록으로 맞춥니다. [탐색 기준과 재개 방법](forward_six/TUNING.md)을 참고하세요. 새 최종 모델 선정은 아직 하지 않았습니다.
 
 ## 무엇을 통합했나
 

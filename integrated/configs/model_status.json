@@ -1,10 +1,27 @@
 {
   "forward": {
-    "selection": "sm_mlp",
-    "basis": "Train CV only",
-    "classification": "five-network ensemble",
-    "regression": "five-network joint Gaussian ensemble",
-    "inverse_use_seed": 0
+    "selection": "mlp_ensemble5",
+    "basis": "MLP family selected by common Train 5-fold / 50-trial comparison; fixed five-seed ensemble requested afterwards",
+    "artifact_directory": "artifacts/integrated/forward-mlp-ensemble",
+    "branch": "forward_final",
+    "classification": "equal average of five 3-class probability predictions, then argmax",
+    "regression_groups": [
+      "angle_displacement",
+      "barrier",
+      "stress"
+    ],
+    "members_per_task": 5,
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "total_networks": 20,
+    "inference": "forward_six.ensemble.load_ensemble + predict",
+    "test_used_for_ensemble_member_selection": false,
+    "legacy_inverse_adapter_automatically_changed": false
   },
   "inverse": {
     "selected_model": null,
@@ -30,5 +47,6 @@
     "barrier_still_in_generator_input": true,
     "new_training_or_search": false
   },
-  "integrated_ansys_validation": false
+  "integrated_ansys_validation": false,
+  "evaluation_scope": "Historical inverse comparison rules below; new Forward only predicts values. New inverse acceptance rules must be set separately."
 }

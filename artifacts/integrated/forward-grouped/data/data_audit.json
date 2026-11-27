@@ -1,0 +1,27 @@
+{
+  "partial_bi_records": 979,
+  "verified_stress_records": 979,
+  "missing_or_mismatched": 0,
+  "definition": "partial: max hinge stress from initial through second energy minimum, inclusive",
+  "source_column": "initial_to_second_max_MPa",
+  "unit": "MPa",
+  "sha256": {
+    "/Users/user/Documents/ChatGPT/\ucef4\ud574\uc124 \ud504\ub85c\uc81d\ud2b8/output/unified-forward/data/scalar_targets.csv": "e201aef9bdfdc8ffd1a29e572f3ab0080a4e9556e74063e092170dd9e1b567be",
+    "../output/\ud1b5\ud569 \uc804\ucc98\ub9ac \ub370\uc774\ud130 v4/hinge_stress.csv": "f28fce2cbcbb82226d842006eec70af08177bc023bf1e01c54b57238776cf061",
+    "/Users/user/Documents/ChatGPT/\ucef4\ud574\uc124 \ud504\ub85c\uc81d\ud2b8/output/unified-forward/data/folds.csv": "c11fe13237a9818b98480ac1b784484187ed6e84da095ac06b1b5e6f5ad2d973"
+  },
+  "population": {
+    "train": {
+      "classification": 854,
+      "angle_displacement": 836,
+      "barrier": 836,
+      "stress": 836
+    },
+    "test": {
+      "classification": 105,
+      "angle_displacement": 143,
+      "barrier": 143,
+      "stress": 143
+    }
+  }
+}

@@ -1,0 +1,8 @@
+# Minimal environment for the forward_final five-seed MLP ensemble.
+# No CAD/ANSYS, XGBoost, LightGBM, or Optuna needed for prediction.
+numpy==1.26.4
+pandas==2.3.3
+scipy==1.17.1
+scikit-learn==1.9.1
+torch==2.2.2
+threadpoolctl==3.8.0

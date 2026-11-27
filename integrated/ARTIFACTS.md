@@ -1,5 +1,11 @@
 # 통합 결과 파일 받기
 
+## 최신 `forward_final` 브랜치
+
+최종 MLP 5개 시드 앙상블은 `artifacts/integrated/forward-mlp-ensemble/`에 가중치를 포함했습니다. 아래 과거 Release는 새 Forward 예측에 필요하지 않습니다. [최종 전달 문서](FORWARD_FINAL.md)를 따르세요. 배포 파일 SHA-256은 `artifacts/integrated/forward-final-manifest.json`에 있습니다.
+
+아래 설명은 과거 `integrated` 브랜치의 모델과 역설계 비교 기록을 받는 방법입니다.
+
 ## 설치
 
 1. `integrated` 브랜치의 최신 커밋을 받습니다. 작은 CSV·설정은 `artifacts/integrated/`에 이미 포함되어 있습니다.

@@ -1,0 +1,62 @@
+{
+  "schema_version": "mlp-seed-ensemble-v1",
+  "selected_model": "MLP five-seed ensemble",
+  "bundle": "bundle.pkl",
+  "bundle_sha256": "221c55824b74675be1dc15a5cef1c77fda2a04480a111ae39782819b364f5059",
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "tasks": [
+    "classification",
+    "angle_displacement",
+    "barrier",
+    "stress"
+  ],
+  "members_per_task": 5,
+  "total_networks": 20,
+  "selection_basis": "User-selected MLP family from 50-trial CV comparison; fixed equal ensemble before new Test evaluation",
+  "configs": {
+    "classification": {
+      "width": 64,
+      "depth": 4,
+      "lr": 0.009943871079369207,
+      "wd": 0.0,
+      "act": "tanh",
+      "epochs": 40
+    },
+    "angle_displacement": {
+      "width": 256,
+      "depth": 3,
+      "lr": 0.006733104165327618,
+      "wd": 0.0,
+      "act": "silu",
+      "epochs": 100
+    },
+    "barrier": {
+      "width": 64,
+      "depth": 4,
+      "lr": 0.0016363534147067803,
+      "wd": 0.0,
+      "act": "silu",
+      "epochs": 1120
+    },
+    "stress": {
+      "width": 16,
+      "depth": 4,
+      "lr": 0.003388237462323046,
+      "wd": 0.0,
+      "act": "silu",
+      "epochs": 880
+    }
+  },
+  "inference_module": "forward_six.ensemble",
+  "stress_unit": "MPa",
+  "barrier_unit": "mJ",
+  "regression_domain": "partial-bistable geometries; predicted values for other classes are not validated targets",
+  "probability_calibration_verified": false,
+  "inverse_automatically_changed": false
+}

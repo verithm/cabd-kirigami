@@ -1,0 +1,66 @@
+{
+  "gp": {
+    "run_new_50": false,
+    "pilot_winner": {
+      "candidate": "gp",
+      "variant": "rbf_original_bounds",
+      "baseline_f1": 0.9557522123893806,
+      "pilot_f1": 0.952020202020202,
+      "gain_F1_percentage_points": -0.37320103691785844,
+      "folds_improved": 0,
+      "folds_worse": 3,
+      "trigger_new_50": false,
+      "precision": 0.9472361809045227,
+      "recall": 0.9568527918781726,
+      "paired_fold_gains": [
+        -0.006682389937106903,
+        -0.0057649667405764715,
+        0.0,
+        0.0,
+        -0.006050473688400615
+      ],
+      "config": {
+        "kernel": "rbf",
+        "ard": true,
+        "signal_upper": 1000.0,
+        "length_upper": 1000.0,
+        "length_initial": 0.10716239797269507,
+        "signal_initial": 1.062863482919299,
+        "max_optimizer_iterations": 60
+      }
+    },
+    "criterion": "same predeclared initial-pilot threshold"
+  },
+  "rom_gp": {
+    "run_new_50": false,
+    "pilot_winner": {
+      "candidate": "rom_gp",
+      "variant": "bounds_only",
+      "baseline_f1": 0.9545454545454546,
+      "pilot_f1": 0.9493670886075949,
+      "gain_F1_percentage_points": -0.5178365937859697,
+      "folds_improved": 0,
+      "folds_worse": 3,
+      "trigger_new_50": false,
+      "precision": 0.946969696969697,
+      "recall": 0.9517766497461929,
+      "paired_fold_gains": [
+        0.0,
+        -0.006525157232704415,
+        0.0,
+        -0.006782464846980973,
+        -0.012500000000000067
+      ],
+      "config": {
+        "kernel": "matern15",
+        "ard": true,
+        "signal_upper": 1000000.0,
+        "length_upper": 100000.0,
+        "length_initial": 1.5993761546952203,
+        "signal_initial": 0.3064377863388475,
+        "max_optimizer_iterations": 60
+      }
+    },
+    "criterion": "same predeclared initial-pilot threshold"
+  }
+}

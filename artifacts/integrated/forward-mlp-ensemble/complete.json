@@ -1,0 +1,36 @@
+{
+  "time": "2026-11-27T20:35:10.867505+09:00",
+  "full_train_networks": 20,
+  "members_per_task": 5,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "test_scored": true,
+  "ensemble_size_or_weights_selected_on_test": false,
+  "baseline_seed42_weights_reproduced": true,
+  "distinct_weights_per_task": 5,
+  "bundle_reload_predictions_verified": true,
+  "population": {
+    "train": {
+      "geometries": 1495,
+      "classification": 854,
+      "angle_displacement": 836,
+      "barrier": 836,
+      "stress": 836
+    },
+    "test": {
+      "geometries": 227,
+      "classification": 105,
+      "angle_displacement": 143,
+      "barrier": 143,
+      "stress": 143
+    }
+  },
+  "total_fit_seconds": 64.46771495207213,
+  "inverse_automatically_changed": false,
+  "git_pushed": false
+}

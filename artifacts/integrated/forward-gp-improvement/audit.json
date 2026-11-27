@@ -1,0 +1,17 @@
+{
+  "pilot_fold_records_recomputed": 80,
+  "all_pilot_metrics_verified": true,
+  "train_only_ids_verified": true,
+  "source_data_hashes_verified": true,
+  "test_scored": false,
+  "original_studies_verified_at_50": 24,
+  "original_final_test_artifacts_unchanged": true,
+  "inner_optimization_calls": 160,
+  "inner_calls_not_success": 1,
+  "new_studies": {},
+  "decisions": {
+    "gp": false,
+    "rom_gp": false
+  },
+  "claim": "pilot diagnostic; no universal model superiority or statistical significance claim"
+}

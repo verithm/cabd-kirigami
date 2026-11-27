@@ -1,0 +1,62 @@
+{
+  "time": "2026-11-27T09:14:41.312511+09:00",
+  "refits": 24,
+  "test_scored": true,
+  "tuning_trials_per_study": 50,
+  "population": {
+    "train": {
+      "geometries": 1495,
+      "classification": 854,
+      "angle_displacement": 836,
+      "barrier": 836,
+      "stress": 836
+    },
+    "test": {
+      "geometries": 227,
+      "classification": 105,
+      "angle_displacement": 143,
+      "barrier": 143,
+      "stress": 143
+    }
+  },
+  "cv_recommended_candidates": {
+    "classification": "mlp",
+    "angle_displacement": "mlp",
+    "barrier": "mlp",
+    "stress": "mlp"
+  },
+  "descriptive_test_leaders": {
+    "f1": "mlp",
+    "angle_deg_mae": "mlp",
+    "deformation_mm_mae": "mlp",
+    "log10_barrier_mae": "rom_mlp",
+    "barrier_mJ_mae": "mlp",
+    "hinge_transition_max_MPa_mae": "mlp"
+  },
+  "test_used_for_tuning_or_reselection": false,
+  "all_models_reloaded_and_checked": true,
+  "total_fit_seconds": 333.9279952100187,
+  "production_replacement": false,
+  "warnings": {
+    "rom_gp|classification": [
+      "The optimal value found for dimension 0 of parameter k1__constant_value is close to the specified upper bound 1000.0. Increasing the bound and calling fit again may find a better value.",
+      "The optimal value found for dimension 4 of parameter k2__length_scale is close to the specified upper bound 1000.0. Increasing the bound and calling fit again may find a better value.",
+      "The optimal value found for dimension 6 of parameter k2__length_scale is close to the specified upper bound 1000.0. Increasing the bound and calling fit again may find a better value."
+    ],
+    "rom_gp|barrier": [
+      "The optimal value found for dimension 6 of parameter k1__k2__length_scale is close to the specified upper bound 1000.0. Increasing the bound and calling fit again may find a better value.",
+      "The optimal value found for dimension 9 of parameter k1__k2__length_scale is close to the specified upper bound 1000.0. Increasing the bound and calling fit again may find a better value."
+    ],
+    "rom_gp|angle_displacement": [
+      "The optimal value found for dimension 6 of parameter k1__k2__length_scale is close to the specified upper bound 1000.0. Increasing the bound and calling fit again may find a better value."
+    ],
+    "rom_gp|stress": [
+      "The optimal value found for dimension 9 of parameter k1__k2__length_scale is close to the specified upper bound 1000.0. Increasing the bound and calling fit again may find a better value."
+    ],
+    "gp|classification": [
+      "The optimal value found for dimension 0 of parameter k1__constant_value is close to the specified upper bound 1000.0. Increasing the bound and calling fit again may find a better value.",
+      "The optimal value found for dimension 4 of parameter k2__length_scale is close to the specified upper bound 1000.0. Increasing the bound and calling fit again may find a better value.",
+      "The optimal value found for dimension 5 of parameter k2__length_scale is close to the specified upper bound 1000.0. Increasing the bound and calling fit again may find a better value."
+    ]
+  }
+}
