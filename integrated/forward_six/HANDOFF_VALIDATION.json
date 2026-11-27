@@ -1,0 +1,24 @@
+{
+  "branch": "forward_final",
+  "tested_code_commit": "576b52c3426207f016916928f82b11d6ee3ebdb0",
+  "test_mode": "git archive extracted into a separate clean directory; existing validated Python 3.12 environment; not a fresh dependency installation",
+  "external_runs_environment_removed": true,
+  "external_pythonpath_removed": true,
+  "default_repository_artifact_location_works": true,
+  "cli_example_predictions_match": true,
+  "direct_python_api_predictions_match": true,
+  "published_artifact_hashes_verified": 75,
+  "published_inference_source_hashes_verified": 6,
+  "ensemble_behavior_tests_passed": 3,
+  "members_per_task": 5,
+  "networks_in_bundle": 20,
+  "unneeded_modules_not_imported": [
+    "optuna",
+    "xgboost",
+    "lightgbm",
+    "cadquery"
+  ],
+  "bundle_sha256": "221c55824b74675be1dc15a5cef1c77fda2a04480a111ae39782819b364f5059",
+  "raw_ANSYS_or_force_curves_required_for_inference": false,
+  "legacy_inverse_adapter_changed": false
+}
